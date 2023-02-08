@@ -20,9 +20,8 @@ public class pnlChat extends javax.swing.JPanel {
     /**
      * Creates new form pnlHome
      */
-    
     private byte[] huella = new byte[400];
-    
+
     public pnlChat() {
         initComponents();
     }
@@ -273,19 +272,25 @@ public class pnlChat extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-            
+
         Secugen lector = new Secugen();
-        
-        lector.openDevice();
-        lector.getDeviceInfo();
-        lector.capturaHuella();
-       // lector.getImageIcon1();
-        this.huella = lector.getRegMin1();
-        
-        JlabelHuella.setIcon(lector.getImageIcon1());
-        
-        lector.closeDevice();
-     
+
+        String msg = lector.openDevice();
+        if (lector.deviceActivo) {
+
+            //lector.getDeviceInfo();
+            lector.capturaHuella();
+            // lector.getImageIcon1();
+            this.huella = lector.getRegMin1();
+
+            JlabelHuella.setIcon(lector.getImageIcon1());
+
+            lector.closeDevice();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,msg);
+        }
+
         /*if(fname.isEmpty() || mname.isEmpty() || lname.isEmpty() || address.isEmpty() || username.isEmpty()){
             JOptionPane.showMessageDialog(this, "Fill up the Form Properly.", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -319,11 +324,11 @@ public class pnlChat extends javax.swing.JPanel {
 
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
-        
-         String mname = tfMiddlename.getText();
-         PersonaControl personaControl = new PersonaControl();
-         personaControl.insertar2(this.huella, mname);
-       
+
+        String mname = tfMiddlename.getText();
+        PersonaControl personaControl = new PersonaControl();
+        personaControl.insertar2(this.huella, mname);
+
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
 

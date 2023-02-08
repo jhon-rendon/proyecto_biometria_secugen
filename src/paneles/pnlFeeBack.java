@@ -547,25 +547,26 @@ public class pnlFeeBack extends javax.swing.JPanel {
     private void btnRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister2ActionPerformed
         // TODO add your handling code here:
 
-        String fname = tfFirstname.getText();
-        String mname = tfMiddlename.getText();
-        String lname = tfLastname.getText();
-        String address = tfAddress.getText();
-        String username = tfUsername.getText();
-        //String password = tfPassword.getText();
+        
 
+       String msg = lector.openDevice();
+        if (lector.deviceActivo) {
+            lector.capturaHuella();
+            // lector.getImageIcon1();
+            this.huella = lector.getRegMin1();
+
+            System.out.println(lector.getRegMin1());
+            JlabelHuella1.setIcon(lector.getImageIcon1());
+
+            lector.closeDevice();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,msg);
+        }
+
+        //lector.openDevice();
+       // lector.getDeviceInfo();
        
-
-        lector.openDevice();
-        lector.getDeviceInfo();
-        lector.capturaHuella();
-        // lector.getImageIcon1();
-        this.huella = lector.getRegMin1();
-        
-        System.out.println(lector.getRegMin1());
-        JlabelHuella1.setIcon(lector.getImageIcon1());
-        
-        lector.closeDevice();
         
       // lector.verificarHuella
 

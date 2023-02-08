@@ -32,6 +32,7 @@ public class Secugen {
     public JSGFPLib fplib = null;
     private long ret;
     private boolean bLEDOn;
+    public boolean deviceActivo = false;
     private byte[] regMin1 = new byte[400];
     private byte[] regMin2 = new byte[400];
     private byte[] vrfMin  = new byte[400];
@@ -56,8 +57,9 @@ public class Secugen {
     
     
     
-       public void openDevice() {
+       public String openDevice() {
         
+        String msg = null;
         this.deviceName = SGFDxDeviceName.SG_DEV_AUTO;
         fplib = new JSGFPLib();
         
@@ -90,20 +92,25 @@ public class Secugen {
                     imgVerification = new BufferedImage(deviceInfo.imageWidth, deviceInfo.imageHeight, BufferedImage.TYPE_BYTE_GRAY);
                     this.enableControls();*/
                     imgRegistration1 = new BufferedImage(deviceInfo.imageWidth, deviceInfo.imageHeight, BufferedImage.TYPE_BYTE_GRAY);
+                    this.deviceActivo = true;
                 }
                 else
                     //this.jLabelStatus.setText("GetDeviceInfo() Error [" + ret + "]");
                     System.out.println("GetDeviceInfo() Error [" + ret + "]");
+                    msg = " Error al obtener la información del Lector "+ret;
+                   
             }
             else
                 //this.jLabelStatus.setText("OpenDevice() Error [" + ret + "]");    
                 System.out.println("OpenDevice() Error [" + ret + "]");
+                msg = " No se ha detectado el Lector "+ret;
         }
         else
             //this.jLabelStatus.setText("JSGFPLib Initialization Failed");
             System.out.println("JSGFPLib Initialization Failed");
+            msg = " No se ha detectado el Lector";
         
-        
+        return msg;
     }
        
        public void closeDevice(){
