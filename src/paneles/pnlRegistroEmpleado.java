@@ -38,6 +38,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
     public pnlRegistroEmpleado() {
         initComponents();
+        
+       helper.Helper.conseguirMAC();
 
     }
 
@@ -187,6 +189,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 btnRegister1ActionPerformed(evt);
             }
         });
+
+        jLabelFoto.setText("                    Foto");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -425,7 +429,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             };
 
             Files.copy(FROM, TO, options);
-            JOptionPane.showMessageDialog(null, "Imagen Guardada");
+            //JOptionPane.showMessageDialog(null, "Imagen Guardada");
+            System.out.println("Imagen Guardada");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error al Guardar Imagen");
             System.err.println(e.toString());
@@ -483,6 +488,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
                     Image mImagen = new ImageIcon(Ruta).getImage();
                     ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
+                    jLabelFoto.setText("");
                     jLabelFoto.setIcon(mIcono);
 
                 }else{

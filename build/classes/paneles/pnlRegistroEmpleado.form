@@ -381,6 +381,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabelFoto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="                    Foto"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

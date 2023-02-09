@@ -495,9 +495,9 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(361, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -612,7 +612,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                 Image mImagen = new ImageIcon( item.getFoto()).getImage();
                 ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
                  
-                 this.jLabelFoto.setText(null);
+                this.jLabelFoto.setText(null);
                 this.jLabelFoto.setIcon(mIcono);
 
                 System.out.println(" Huella ok "+nombre);
