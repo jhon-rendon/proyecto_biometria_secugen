@@ -149,7 +149,7 @@ public class Principal extends javax.swing.JFrame {
         cinco.setBackground(new java.awt.Color(239, 238, 244));
         cinco.setForeground(new java.awt.Color(128, 128, 131));
         cinco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/market.png"))); // NOI18N
-        cinco.setText("Listar Visitas");
+        cinco.setText("ITEM");
         cinco.setColorHover(new java.awt.Color(204, 204, 204));
         cinco.setColorNormal(new java.awt.Color(239, 238, 244));
         cinco.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -174,7 +174,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(128, 128, 131));
-        jLabel3.setText("REPORTES");
+        jLabel3.setText("MENU2");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -196,7 +196,7 @@ public class Principal extends javax.swing.JFrame {
         ocho.setBackground(new java.awt.Color(239, 238, 244));
         ocho.setForeground(new java.awt.Color(128, 128, 131));
         ocho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/web.png"))); // NOI18N
-        ocho.setText("REPORTE 3");
+        ocho.setText("ITEM");
         ocho.setColorHover(new java.awt.Color(204, 204, 204));
         ocho.setColorNormal(new java.awt.Color(239, 238, 244));
         ocho.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -220,7 +220,7 @@ public class Principal extends javax.swing.JFrame {
         siete.setBackground(new java.awt.Color(239, 238, 244));
         siete.setForeground(new java.awt.Color(128, 128, 131));
         siete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ios.png"))); // NOI18N
-        siete.setText("REPORTE 2");
+        siete.setText("ITEM");
         siete.setColorHover(new java.awt.Color(204, 204, 204));
         siete.setColorNormal(new java.awt.Color(239, 238, 244));
         siete.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -244,7 +244,8 @@ public class Principal extends javax.swing.JFrame {
         seis.setBackground(new java.awt.Color(239, 238, 244));
         seis.setForeground(new java.awt.Color(128, 128, 131));
         seis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/chat.png"))); // NOI18N
-        seis.setText("REPORTE 1");
+        seis.setText("ITEM");
+        seis.setActionCommand("ITEM");
         seis.setColorHover(new java.awt.Color(204, 204, 204));
         seis.setColorNormal(new java.awt.Color(239, 238, 244));
         seis.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -437,7 +438,7 @@ public class Principal extends javax.swing.JFrame {
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCentroLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(565, 565, 565))
+                .addGap(248, 248, 248))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -516,7 +517,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_unoMousePressed
 
     private void tresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresActionPerformed
-        new CambiaPanel(pnlPrincipal, new paneles.pnlChat());
+        new CambiaPanel(pnlPrincipal, new paneles.pnlRegistroEmpleado());
         if(this.tres.isSelected()){
             this.tres.setColorNormal(new Color(204,204,204));
             this.tres.setColorHover(new Color(204,204,204));
@@ -796,7 +797,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cuatroMousePressed
 
     private void cuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroActionPerformed
-        new CambiaPanel(pnlPrincipal, new paneles.pnlFeeBack());
+        new CambiaPanel(pnlPrincipal, new paneles.pnlValidarHuellaEmpleado());
         if(this.cuatro.isSelected()){
             this.uno.setColorNormal(new Color(239,238,244));
             this.uno.setColorHover(new Color(204,204,204));

@@ -4,23 +4,37 @@ package entidades;
 public class Persona {
     
     private int idPersona;
-    private String dni;
+    private String cedula;
     private String nombre;
     private String apellido;
     private String telefono;
     private int edad;
     private byte[] huella;
+    private String cargo;
+    private String estado;
+    private String foto;
 
     public Persona() {
     }
 
     public Persona(int idPersona, String dni, String nombre, String apellido, String telefono, int edad) {
         this.idPersona = idPersona;
-        this.dni = dni;
+        this.cedula = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.edad = edad;
+    }
+    
+     public Persona(String cedula, String nombre, String apellido, String cargo, String estado, byte[] huella, String foto ) {
+        
+        this.cedula    = cedula;
+        this.nombre    = nombre;
+        this.apellido  = apellido;
+        this.estado    = estado;
+        this.huella    = huella;
+        this.cargo     = cargo;
+        this.foto      = foto;
     }
     
     public Persona( String nombre, byte[] huella) {
@@ -36,12 +50,12 @@ public class Persona {
         this.idPersona = idPersona;
     }
 
-    public String getDni() {
-        return dni;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setCedula(String cc) {
+        this.cedula = cc;
     }
 
     public String getNombre() {
@@ -83,6 +97,34 @@ public class Persona {
 
     public void setHuella(byte[] huella) {
         this.huella = huella;
+    }
+    
+    
+    
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+    
+    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
+     public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     

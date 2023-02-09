@@ -7,10 +7,12 @@ package paneles;
 
 import biometria.Secugen;
 import entidades.Persona;
+import java.awt.Image;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import negocio.PersonaControl;
 
@@ -18,7 +20,7 @@ import negocio.PersonaControl;
  *
  * @author RojeruSan
  */
-public class pnlFeeBack extends javax.swing.JPanel {
+public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
 
     private byte[] huella;
     Secugen lector;
@@ -26,7 +28,7 @@ public class pnlFeeBack extends javax.swing.JPanel {
     /**
      * Creates new form pnlHome
      */
-    public pnlFeeBack() {
+    public pnlValidarHuellaEmpleado() {
         initComponents();
           lector = new Secugen();
     }
@@ -64,19 +66,21 @@ public class pnlFeeBack extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnRegister2 = new javax.swing.JButton();
-        tfFirstname1 = new javax.swing.JTextField();
+        tfCedula = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        tfMiddlename1 = new javax.swing.JTextField();
-        tfLastname1 = new javax.swing.JTextField();
+        tfNombres = new javax.swing.JTextField();
+        tfApellidos = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        tfAddress1 = new javax.swing.JTextField();
-        tfUsername1 = new javax.swing.JTextField();
+        tfCargo = new javax.swing.JTextField();
+        tfEstado = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         JlabelHuella1 = new javax.swing.JLabel();
         btnRegister3 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabelFoto = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -309,9 +313,10 @@ public class pnlFeeBack extends javax.swing.JPanel {
             }
         });
 
-        tfFirstname1.addActionListener(new java.awt.event.ActionListener() {
+        tfCedula.setEditable(false);
+        tfCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfFirstname1ActionPerformed(evt);
+                tfCedulaActionPerformed(evt);
             }
         });
 
@@ -319,15 +324,17 @@ public class pnlFeeBack extends javax.swing.JPanel {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Cedula");
 
-        tfMiddlename1.addActionListener(new java.awt.event.ActionListener() {
+        tfNombres.setEditable(false);
+        tfNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfMiddlename1ActionPerformed(evt);
+                tfNombresActionPerformed(evt);
             }
         });
 
-        tfLastname1.addActionListener(new java.awt.event.ActionListener() {
+        tfApellidos.setEditable(false);
+        tfApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLastname1ActionPerformed(evt);
+                tfApellidosActionPerformed(evt);
             }
         });
 
@@ -339,15 +346,17 @@ public class pnlFeeBack extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Apellidos");
 
-        tfAddress1.addActionListener(new java.awt.event.ActionListener() {
+        tfCargo.setEditable(false);
+        tfCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfAddress1ActionPerformed(evt);
+                tfCargoActionPerformed(evt);
             }
         });
 
-        tfUsername1.addActionListener(new java.awt.event.ActionListener() {
+        tfEstado.setEditable(false);
+        tfEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUsername1ActionPerformed(evt);
+                tfEstadoActionPerformed(evt);
             }
         });
 
@@ -367,11 +376,11 @@ public class pnlFeeBack extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JlabelHuella1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+            .addComponent(JlabelHuella1, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JlabelHuella1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+            .addComponent(JlabelHuella1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
 
         btnRegister3.setBackground(new java.awt.Color(219, 222, 218));
@@ -384,48 +393,63 @@ public class pnlFeeBack extends javax.swing.JPanel {
             }
         });
 
+        jLabelFoto.setText("                Foto");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(btnRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel16)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfFirstname1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfMiddlename1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfLastname1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(88, 88, 88))
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(169, 169, 169))))
+                        .addGap(22, 22, 22)
+                        .addComponent(btnRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel15)
+                            .addGap(18, 18, 18)
+                            .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(247, 247, 247))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,30 +458,35 @@ public class pnlFeeBack extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(tfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfFirstname1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfMiddlename1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(tfLastname1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(tfAddress1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(tfUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                            .addComponent(jLabel16)
+                            .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -467,11 +496,9 @@ public class pnlFeeBack extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(76, 76, 76)))
-                .addContainerGap())
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,12 +571,109 @@ public class pnlFeeBack extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
+    private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
+        // TODO add your handling code here:
+
+        //String mname = tfMiddlename.getText();
+        PersonaControl personaControl = new PersonaControl();
+
+        // System.out.println("personaControl.ListarPersonas();  "+personaControl.ListarPersonas());
+        //Persona listado = (Persona) personaControl.ListarPersonas();
+        List<Persona> listado = new ArrayList<>();
+        listado = personaControl.ListarPersonas();
+
+        String nombre;
+        this.tfNombres.setText("");
+        this.tfApellidos.setText("");
+        this.tfCedula.setText("");
+        this.tfCargo.setText("");
+        this.tfEstado.setText("");
+        this.jLabelFoto.setIcon(null);
+        //this.JlabelHuella1.setIcon(null);
+        byte[] validHuella;
+        //int contador = 0;
+        boolean existeHuella = false;
+
+        for (Persona item : listado ) {
+
+            nombre =  item.getNombre();
+            validHuella = (byte[]) item.getHuella();
+
+            System.out.println("for "+nombre);
+            if ( lector.verificarHuella( validHuella, this.huella ) ){
+                tfNombres.setText(nombre);
+
+                this.tfApellidos.setText(item.getApellido());
+                this.tfCedula.setText(item.getCedula());
+                this.tfCargo.setText(item.getCargo());
+                this.tfEstado.setText(item.getEstado());
+                
+                
+                Image mImagen = new ImageIcon( item.getFoto()).getImage();
+                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
+                 
+                 this.jLabelFoto.setText(null);
+                this.jLabelFoto.setIcon(mIcono);
+
+                System.out.println(" Huella ok "+nombre);
+                existeHuella = true;
+                break;
+
+            }else{
+                System.out.println(" Error al comparar las huellas ");
+            }
+
+        }
+
+        if( !existeHuella ){
+            JOptionPane.showMessageDialog(null, "La huella no coincide");
+        }
+
+        /*HashMap registroHuella = personaControl.SelectBytesEspecial();
+
+        byte[] validHuella = (byte[]) registroHuella.get("huella");
+        String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
+
+        System.out.println("nombre  "+nombre);
+
+        //verificarHuella( byte[] verifyHuella , byte[] huellaCapturada)
+        if ( lector.verificarHuella( validHuella, this.huella ) ){
+            tfMiddlename1.setText(nombre);
+            System.out.println(" Huella ok ");
+
+        }else{
+            System.out.println(" Error al comparar las huellas ");
+        }*/
+        //validHuella      = (byte[]) registroHuella.get("huella");
+        // String nombre    = registroHuella.get("nombre").toString();
+        //String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
+        //personaControl.insertar2(this.huella, mname);
+    }//GEN-LAST:event_btnRegister3ActionPerformed
+
+    private void tfEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEstadoActionPerformed
+
+    private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCargoActionPerformed
+
+    private void tfApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfApellidosActionPerformed
+
+    private void tfNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNombresActionPerformed
+
+    private void tfCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCedulaActionPerformed
+
     private void btnRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister2ActionPerformed
         // TODO add your handling code here:
 
-        
-
-       String msg = lector.openDevice();
+        String msg = lector.openDevice();
         if (lector.deviceActivo) {
             lector.capturaHuella();
             // lector.getImageIcon1();
@@ -559,16 +683,16 @@ public class pnlFeeBack extends javax.swing.JPanel {
             JlabelHuella1.setIcon(lector.getImageIcon1());
 
             lector.closeDevice();
+            lector.deviceActivo = false;
         }
         else{
             JOptionPane.showMessageDialog(null,msg);
         }
 
         //lector.openDevice();
-       // lector.getDeviceInfo();
-       
-        
-      // lector.verificarHuella
+        // lector.getDeviceInfo();
+
+        // lector.verificarHuella
 
         /*if(fname.isEmpty() || mname.isEmpty() || lname.isEmpty() || address.isEmpty() || username.isEmpty()){
             JOptionPane.showMessageDialog(this, "Fill up the Form Properly.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -580,91 +704,6 @@ public class pnlFeeBack extends javax.swing.JPanel {
 
         }*/
     }//GEN-LAST:event_btnRegister2ActionPerformed
-
-    private void tfFirstname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstname1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfFirstname1ActionPerformed
-
-    private void tfMiddlename1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMiddlename1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfMiddlename1ActionPerformed
-
-    private void tfLastname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLastname1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfLastname1ActionPerformed
-
-    private void tfAddress1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAddress1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAddress1ActionPerformed
-
-    private void tfUsername1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsername1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUsername1ActionPerformed
-
-    private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
-        // TODO add your handling code here:
-
-        //String mname = tfMiddlename.getText();
-        PersonaControl personaControl = new PersonaControl();
-        
-        
-         
-        System.out.println("personaControl.ListarPersonas();  "+personaControl.ListarPersonas());
-        //Persona listado = (Persona) personaControl.ListarPersonas();
-        List<Persona> listado = new ArrayList<>();
-        listado = personaControl.ListarPersonas();
-       
-         
-         String nombre;
-         tfMiddlename1.setText("");
-         byte[] validHuella;
-         //int contador = 0;
-         boolean existeHuella = false;
-         
-         for (Persona item : listado ) {
-           
-              nombre =  item.getNombre();
-              validHuella = (byte[]) item.getHuella();
-              
-             System.out.println("for "+nombre);
-             if ( lector.verificarHuella( validHuella, this.huella ) ){
-                 tfMiddlename1.setText(nombre);
-                 System.out.println(" Huella ok "+nombre);
-                 existeHuella = true;
-                  break;
-             
-                }else{
-                    System.out.println(" Error al comparar las huellas ");
-                }
-            
-        }
-         
-         if( !existeHuella ){
-             JOptionPane.showMessageDialog(null, "La huella no coincide");
-         }
-         
-         /*HashMap registroHuella = personaControl.SelectBytesEspecial();
-         
-         
-         
-         byte[] validHuella = (byte[]) registroHuella.get("huella");
-         String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
-         
-          System.out.println("nombre  "+nombre);
-          
-          //verificarHuella( byte[] verifyHuella , byte[] huellaCapturada)
-         if ( lector.verificarHuella( validHuella, this.huella ) ){
-             tfMiddlename1.setText(nombre);
-             System.out.println(" Huella ok ");
-             
-         }else{
-             System.out.println(" Error al comparar las huellas ");
-         }*/
-        //validHuella      = (byte[]) registroHuella.get("huella");
-        // String nombre    = registroHuella.get("nombre").toString();
-        //String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
-        //personaControl.insertar2(this.huella, mname);
-    }//GEN-LAST:event_btnRegister3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -689,21 +728,23 @@ public class pnlFeeBack extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelFoto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JTextField tfAddress;
-    private javax.swing.JTextField tfAddress1;
+    private javax.swing.JTextField tfApellidos;
+    private javax.swing.JTextField tfCargo;
+    private javax.swing.JTextField tfCedula;
+    private javax.swing.JTextField tfEstado;
     private javax.swing.JTextField tfFirstname;
-    private javax.swing.JTextField tfFirstname1;
     private javax.swing.JTextField tfLastname;
-    private javax.swing.JTextField tfLastname1;
     private javax.swing.JTextField tfMiddlename;
-    private javax.swing.JTextField tfMiddlename1;
+    private javax.swing.JTextField tfNombres;
     private javax.swing.JTextField tfUsername;
-    private javax.swing.JTextField tfUsername1;
     // End of variables declaration//GEN-END:variables
 }

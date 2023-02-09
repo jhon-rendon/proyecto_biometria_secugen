@@ -61,16 +61,18 @@ public class PersonaControl {
          return lista;
      }
     
-    public String insertar(String dni, String nombre, String apellido, String telefono, int edad){
+    public String insertar(String cedula, String nombre, String apellido, String cargo, String estado , byte[] huella, String foto ){
         
-        persona.setDni(dni);
+        persona.setCedula(cedula);
         persona.setNombre(nombre);
         persona.setApellido(apellido);
-        persona.setTelefono(telefono);
-        persona.setEdad(edad);
+        persona.setCargo(cargo);
+        persona.setEstado(estado);
+        persona.setHuella(huella);
+        persona.setFoto(foto);
         
         if (datos.insertar(persona)) {
-            return "OK";
+            return "Registro creado satisfactoriamente";
         }else{
             return "Ocurrio un error en el registro";
         }
@@ -88,7 +90,7 @@ public class PersonaControl {
         
         for (Persona item : lista) {
             registro[0] = Integer.toString(item.getIdPersona());
-            registro[1] = item.getDni();
+            registro[1] = item.getCedula();
             registro[2] = item.getNombre();
             registro[3] = item.getApellido();
             registro[4] = item.getTelefono();
