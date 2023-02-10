@@ -98,7 +98,7 @@ public class PersonaDAO implements PersonaInterface {
 
         boolean resp = false;
         
-        System.out.println("obj " +obj.getCedula() +" "+obj.getNombre()+ " "+obj.getApellido()+" "+obj.getEstado()+ " "+ obj.getHuella()+ " "+obj.getFoto());
+        //System.out.println("obj " +obj.getCedula() +" "+obj.getNombre()+ " "+obj.getApellido()+" "+obj.getEstado()+ " "+ obj.getHuella()+ " "+obj.getFoto());
 
         try {
             String sql = "insert into APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,fecha_creacion,hora_creacion,idcargo,idarea) values(?, ?, ?, ?, ?, ?, SYSDATE,to_char(SYSDATE, 'HH24:MI:SS'),1,1)";
@@ -210,7 +210,7 @@ public class PersonaDAO implements PersonaInterface {
             String update = "update persona set dni =?, nombre =?, apellido = ?, telefono = ?, edad = ? where idPersona = ?";
 
             ps = Conexion.getConexion().prepareStatement(update);
-            ps.setInt(1, obj.getCedula());
+            ps.setDouble(1, obj.getCedula());
             ps.setString(2, obj.getNombre());
             ps.setString(3, obj.getApellido());
             ps.setString(4, obj.getTelefono());

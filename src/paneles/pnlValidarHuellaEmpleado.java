@@ -8,9 +8,7 @@ package paneles;
 import biometria.Secugen;
 import entidades.Persona;
 import java.awt.Image;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -629,25 +627,6 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "La huella no coincide");
         }
 
-        /*HashMap registroHuella = personaControl.SelectBytesEspecial();
-
-        byte[] validHuella = (byte[]) registroHuella.get("huella");
-        String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
-
-        System.out.println("nombre  "+nombre);
-
-        //verificarHuella( byte[] verifyHuella , byte[] huellaCapturada)
-        if ( lector.verificarHuella( validHuella, this.huella ) ){
-            tfMiddlename1.setText(nombre);
-            System.out.println(" Huella ok ");
-
-        }else{
-            System.out.println(" Error al comparar las huellas ");
-        }*/
-        //validHuella      = (byte[]) registroHuella.get("huella");
-        // String nombre    = registroHuella.get("nombre").toString();
-        //String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
-        //personaControl.insertar2(this.huella, mname);
     }//GEN-LAST:event_btnRegister3ActionPerformed
 
     private void tfEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEstadoActionPerformed

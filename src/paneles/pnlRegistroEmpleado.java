@@ -7,6 +7,8 @@ package paneles;
 
 import biometria.JSGD;
 import biometria.Secugen;
+import entidades.Area;
+import entidades.Persona;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -15,12 +17,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import negocio.AreaControl;
 import negocio.PersonaControl;
 
 /**
@@ -37,8 +42,22 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private String rutaFotoDestino = null;
 
     public pnlRegistroEmpleado() {
+        
+        
+        //Cargar area
+        AreaControl area = new AreaControl();
+        /*List<Area> listado = new ArrayList<>();
+        listado =  area.ListarAreas();
+        
+        for (Area item : listado ) {
+            //jComboBoxArea.addItem(item.toString());
+            System.out.println(item.getNombre());
+        }*/
+        
         initComponents();
-
+        
+                
+          
         //helper.Helper.obtenerMAC();
     }
 
@@ -72,6 +91,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jLabelFoto = new javax.swing.JLabel();
         jButtonCargarFoto = new javax.swing.JButton();
         jComboBoxEstado = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBoxArea = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -115,6 +136,14 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cedulaActionPerformed(evt);
+            }
+        });
+        cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cedulaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cedulaKeyTyped(evt);
             }
         });
 
@@ -211,6 +240,12 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Area");
+
+        jComboBoxArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Text", "1", "2", "3" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -235,18 +270,19 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                 .addComponent(tfMiddlename, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(tfLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(148, 148, 148)))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel9))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jLabel10)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +306,9 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                         .addGap(22, 22, 22)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,15 +324,17 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(tfLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(17, 17, 17)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jComboBoxArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47)
                                 .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +365,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -427,7 +467,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
         //Adjuntar Foto
         String Ruta = "";
-        String destino = "\\172.16.30.8/Repositorio/java_prueba/";
+        String destino = "\\10.190.15.1/Repositorio/Biometria/";
         destino = destino.replace("\\", "\\\\");
 
         JFileChooser jFileChooser = new JFileChooser();
@@ -452,13 +492,13 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
                 extension = extension.replace(" ", "");
 
-                System.out.println("Extension de imagen " + extension.toLowerCase());
+                //System.out.println("Extension de imagen " + extension.toLowerCase());
 
                 if (extension.toLowerCase().equals("png") || extension.toLowerCase().equals("jpg")) {
 
-                    System.out.println("nombreArchivo " + extension);
+                    //System.out.println("nombreArchivo " + extension);
 
-                    String archivo = destino + "" + this.cedula.getText() + "-" + nombreArchivo;
+                    String archivo = destino + "" + this.cedula.getText() + "-" + helper.Helper.obtenerFechaCompleta()+"."+extension.toLowerCase();
 
                     this.rutaFotoOrigen = Ruta;
                     this.rutaFotoDestino = archivo;
@@ -483,34 +523,26 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
         }
 
-        /*
-        JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.PNG", "png");
-        fc.setFileFilter(filtro);
-        int seleccion = fc.showOpenDialog(this);
-
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File fichero = fc.getSelectedFile();
-            String ruta = fichero.getAbsolutePath();
-            String nombreArchivo = fichero.getName();
-            String archivo = destino + "" + nombreArchivo;
-
-            File folder = new File(destino);
-            if (!folder.exists()) {
-                folder.mkdirs();
-            }
-
-            copyFile_Java7(ruta, archivo);
-
-        }
-         */
+      
 
     }//GEN-LAST:event_jButtonCargarFotoActionPerformed
 
     private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxEstadoActionPerformed
+
+    private void cedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyPressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_cedulaKeyPressed
+
+    private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
+        // TODO add your handling code here:
+        if(cedula.getText().length() >= 11)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_cedulaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -519,8 +551,10 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnRegister1;
     private javax.swing.JTextField cedula;
     private javax.swing.JButton jButtonCargarFoto;
+    private javax.swing.JComboBox<String> jComboBoxArea;
     private javax.swing.JComboBox<String> jComboBoxEstado;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

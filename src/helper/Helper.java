@@ -14,6 +14,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import javax.swing.JOptionPane;
 
@@ -67,7 +70,8 @@ public class Helper {
 
     public static boolean isNumeric(String s) {
         try {
-            Integer.parseInt(s);
+            //Integer.parseInt(s);
+            Double.parseDouble(s);
         } catch (NumberFormatException ex) {
             return false;
         }
@@ -90,5 +94,11 @@ public class Helper {
             JOptionPane.showMessageDialog(null, "Error al Guardar Imagen");
             System.err.println(e.toString());
         }
+    }
+    
+    public static String obtenerFechaCompleta(){
+        
+        String timestamp = ZonedDateTime.now(ZoneId.of("America/Panama")).format(DateTimeFormatter.ofPattern("dd-MM-yyy hh-mm-ss"));
+        return timestamp;
     }
 }
