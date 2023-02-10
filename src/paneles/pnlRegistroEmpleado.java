@@ -39,7 +39,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     public pnlRegistroEmpleado() {
         initComponents();
         
-       helper.Helper.conseguirMAC();
+       helper.Helper.obtenerMAC();
+          
 
     }
 

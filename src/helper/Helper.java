@@ -7,6 +7,9 @@ package helper;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.UnknownHostException;
+import java.util.Base64;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,7 +17,7 @@ import java.net.NetworkInterface;
  */
 public class Helper {
 
-    public static String conseguirMAC() {
+    public static String obtenerMAC() {
         StringBuilder sb = new StringBuilder();
         NetworkInterface a;
         String linea;
@@ -36,5 +39,25 @@ public class Helper {
             e.printStackTrace();
         }
         return "" + sb.toString();
+    }
+    
+    /*public static String obtenerIP()  {
+       InetAddress address = InetAddress.getLocalHost();
+        return address.getHostAddress();
+    }*/
+    
+    public static String decoder( String input ){
+        
+      
+        byte[] base64DecodedBytes = Base64.getDecoder().decode(input);
+        String decodedString = new String(base64DecodedBytes);
+        System.out.println(decodedString);
+        
+        return decodedString;
+    }
+    
+     public static void alerta( String msg ){
+        
+       JOptionPane.showMessageDialog(null, msg);
     }
 }
