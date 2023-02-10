@@ -2,6 +2,7 @@ package datos;
 
 import datos.interfaces.PersonaInterface;
 import entidades.Persona;
+import java.sql.Date;
 import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,28 +97,35 @@ public class PersonaDAO implements PersonaInterface {
     public boolean insertar(Persona obj) {
 
         boolean resp = false;
+        
+        System.out.println("obj " +obj.getCedula() +" "+obj.getNombre()+ " "+obj.getApellido()+" "+obj.getEstado()+ " "+ obj.getHuella()+ " "+obj.getFoto());
 
         try {
-            String sql = "insert into prueba(cedula, nombre, apellidos, cargo, estado,huella,foto) values(?, ?, ?, ?, ?, ?,?)";
+            String sql = "insert into APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,fecha_creacion,hora_creacion,idcargo,idarea) values(?, ?, ?, ?, ?, ?, SYSDATE,to_char(SYSDATE, 'HH24:MI:SS'),1,1)";
 
             ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setString(1, obj.getCedula());
+            ps.setInt(1, obj.getCedula());
             ps.setString(2, obj.getNombre());
             ps.setString(3, obj.getApellido());
-            ps.setString(4, obj.getCargo());
-            ps.setString(5, obj.getEstado());
-            ps.setBytes(6,  obj.getHuella());
-            ps.setString(7, obj.getFoto());
+            //ps.setString(4, obj.getCargo());
+            ps.setString(4, obj.getEstado());
+            ps.setBytes(5,  obj.getHuella());
+            ps.setString(6, obj.getFoto());
           
-
+            //System.out.println("After : " + ps.toString());
             if (ps.executeUpdate() > 0) {
                 resp = true;
             }
+            
             ps.close();
             Conexion.cerrarConexion();
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException sqex) {
+        
+         System.out.println("SQLException " +sqex);
+         }catch (Exception e) {
+            System.out.println("Exception "+e.getMessage());
+    
         }
 
         return resp;
@@ -129,11 +137,12 @@ public class PersonaDAO implements PersonaInterface {
         List<Persona> registros = new ArrayList<>();
 
         try {
-            String consulta = "SELECT cedula,nombre,apellidos,cargo,estado,huella,foto FROM prueba";
+            String consulta = "SELECT documento,nombre,apellidos,'CARGO',activo,huella1,foto FROM APPBIOMETRIA.PERSONA";
             ps = Conexion.getConexion().prepareStatement(consulta);
 
             rs = ps.executeQuery();
-
+            
+            System.out.println( "Listando Registros.... ");
             while (rs.next()) {
                 //int idPersona = rs.getInt(1);
                 //String dni = rs.getString(2);
@@ -142,9 +151,9 @@ public class PersonaDAO implements PersonaInterface {
                 //String apellido = rs.getString(4);
                 //String telefono = rs.getString(5);
                 //int edad = rs.getInt(6);
-
+                  System.out.println( "Nombre "+rs.getString(2));
                 //registros.add(new Persona(nombre, huella));
-                registros.add(new Persona(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getBytes(6),rs.getString(7)));
+                registros.add(new Persona(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getBytes(6),rs.getString(7)));
                         //Persona(String cedula, String nombre, String apellido, String cargo, String estado, byte[] huella)
             }
 
@@ -178,7 +187,7 @@ public class PersonaDAO implements PersonaInterface {
                 String telefono = rs.getString(5);
                 int edad = rs.getInt(6);
 
-                persona = new Persona(idPersona, dni, nombre, apellido, telefono, edad);
+                //persona = new Persona(idPersona, dni, nombre, apellido, telefono, edad);
             }
 
             rs.close();
@@ -201,7 +210,7 @@ public class PersonaDAO implements PersonaInterface {
             String update = "update persona set dni =?, nombre =?, apellido = ?, telefono = ?, edad = ? where idPersona = ?";
 
             ps = Conexion.getConexion().prepareStatement(update);
-            ps.setString(1, obj.getCedula());
+            ps.setInt(1, obj.getCedula());
             ps.setString(2, obj.getNombre());
             ps.setString(3, obj.getApellido());
             ps.setString(4, obj.getTelefono());

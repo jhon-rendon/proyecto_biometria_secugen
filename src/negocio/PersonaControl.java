@@ -61,7 +61,7 @@ public class PersonaControl {
          return lista;
      }
     
-    public String insertar(String cedula, String nombre, String apellido, String cargo, String estado , byte[] huella, String foto ){
+    public boolean insertar(int cedula, String nombre, String apellido, String cargo, String estado , byte[] huella, String foto ){
         
         persona.setCedula(cedula);
         persona.setNombre(nombre);
@@ -72,9 +72,9 @@ public class PersonaControl {
         persona.setFoto(foto);
         
         if (datos.insertar(persona)) {
-            return "Registro creado satisfactoriamente";
+            return true;
         }else{
-            return "Ocurrio un error en el registro";
+            return false;
         }
     }
     
@@ -90,7 +90,7 @@ public class PersonaControl {
         
         for (Persona item : lista) {
             registro[0] = Integer.toString(item.getIdPersona());
-            registro[1] = item.getCedula();
+            //registro[1] = (String) item.getCedula();
             registro[2] = item.getNombre();
             registro[3] = item.getApellido();
             registro[4] = item.getTelefono();

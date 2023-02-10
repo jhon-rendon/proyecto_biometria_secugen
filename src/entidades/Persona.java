@@ -4,7 +4,7 @@ package entidades;
 public class Persona {
     
     private int idPersona;
-    private String cedula;
+    private int cedula;
     private String nombre;
     private String apellido;
     private String telefono;
@@ -17,16 +17,16 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(int idPersona, String dni, String nombre, String apellido, String telefono, int edad) {
+    /*public Persona(int idPersona, String dni, String nombre, String apellido, String telefono, int edad) {
         this.idPersona = idPersona;
-        this.cedula = dni;
+        //this.cedula = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.edad = edad;
-    }
+    }*/
     
-     public Persona(String cedula, String nombre, String apellido, String cargo, String estado, byte[] huella, String foto ) {
+     public Persona(int cedula, String nombre, String apellido, String cargo, String estado, byte[] huella, String foto ) {
         
         this.cedula    = cedula;
         this.nombre    = nombre;
@@ -50,11 +50,11 @@ public class Persona {
         this.idPersona = idPersona;
     }
 
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
-    public void setCedula(String cc) {
+    public void setCedula(int cc) {
         this.cedula = cc;
     }
 

@@ -32,16 +32,14 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     /**
      * Creates new form pnlHome
      */
-    private byte[] huella           = null;
-    private String rutaFotoOrigen   = null;
-    private String rutaFotoDestino  = null;
+    private byte[] huella = null;
+    private String rutaFotoOrigen = null;
+    private String rutaFotoDestino = null;
 
     public pnlRegistroEmpleado() {
         initComponents();
-        
-       helper.Helper.obtenerMAC();
-          
 
+        //helper.Helper.obtenerMAC();
     }
 
     /**
@@ -65,7 +63,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tfCargo = new javax.swing.JTextField();
-        tfEstado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -74,6 +71,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabelFoto = new javax.swing.JLabel();
         jButtonCargarFoto = new javax.swing.JButton();
+        jComboBoxEstado = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -150,12 +148,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             }
         });
 
-        tfEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfEstadoActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cargo");
@@ -212,6 +204,13 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -246,7 +245,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel9)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(148, 148, 148)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,9 +292,9 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                     .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addGap(50, 50, 50)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)
                                 .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +325,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -350,15 +350,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, msg);
         }
 
-        /*if(fname.isEmpty() || mname.isEmpty() || lname.isEmpty() || address.isEmpty() || username.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Fill up the Form Properly.", "Error", JOptionPane.ERROR_MESSAGE);
-
-        }else{
-
-            //start the login process.
-            //userRegister(fname,mname,lname,address,username,password);
-
-        }*/
+  
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
@@ -377,66 +369,57 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCargoActionPerformed
 
-    private void tfEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfEstadoActionPerformed
-
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
 
-        String mname = tfMiddlename.getText();
+        String mname    = tfMiddlename.getText();
         String apellido = tfLastname.getText();
-        String cc = cedula.getText();
-        String cargo = tfCargo.getText();
-        String estado = tfEstado.getText();
+        String cc       = cedula.getText();
+        String cargo    = tfCargo.getText();
+        //String estado   = tfEstado.getText();
+        String estado   = jComboBoxEstado.getSelectedItem().toString();
 
-        if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || cargo.isEmpty() || estado.isEmpty() ) {
-            JOptionPane.showMessageDialog(this, " Debe diligenciar todos los campos ");
-        } else if (this.huella == null) {
-            JOptionPane.showMessageDialog(this, " Debe capturar la huella ");
+        if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || cargo.isEmpty() || estado.isEmpty()) {
+             helper.Helper.alerta("Debe diligenciar todos los campos");
+        } 
+        else if( !helper.Helper.isNumeric(cc)){
+            helper.Helper.alerta("La cedula de debe ser Numerica");
         }
-        else if( this.rutaFotoDestino == null){
-            JOptionPane.showMessageDialog(this, " Debe Adjuntar La Foto ");
-        }
-        else {
+        else if (this.huella == null) {
+             helper.Helper.alerta("Debe capturar la huella ");
+        } else if (this.rutaFotoDestino == null) {
+            helper.Helper.alerta(" Debe Adjuntar La Foto");
+  
+        } else {
             PersonaControl personaControl = new PersonaControl();
-            //personaControl.insertar2(this.huella, mname);
-            String msg = personaControl.insertar(cc, mname, apellido, cargo, estado, this.huella,this.rutaFotoDestino);
-            
-            copyFile(this.rutaFotoOrigen, this.rutaFotoDestino);
-            
-            JOptionPane.showMessageDialog(null, msg);
+           
+            boolean insert = personaControl.insertar(Integer.parseInt(cc), mname, apellido, cargo, estado, this.huella, this.rutaFotoDestino);
 
-            tfMiddlename.setText("");
-            tfLastname.setText("");
-            cedula.setText("");
-            tfCargo.setText("");
-            tfEstado.setText("");
-            JlabelHuella.setIcon(null);
-            this.rutaFotoOrigen = null;
-            this.rutaFotoDestino = null;
-            jLabelFoto.setIcon(null);
+            if (insert) {
+                helper.Helper.copyFile(this.rutaFotoOrigen, this.rutaFotoDestino);
+
+                helper.Helper.alerta(" Registro creado Satisfactoriamente ");
+                
+                //Limpiar los campos
+                tfMiddlename.setText("");
+                tfLastname.setText("");
+                cedula.setText("");
+                tfCargo.setText("");
+                //tfEstado.setText("");
+                JlabelHuella.setIcon(null);
+                this.rutaFotoOrigen = null;
+                this.rutaFotoDestino = null;
+                jLabelFoto.setIcon(null);
+            }
+            else{
+                
+            }
+
         }
 
 
     }//GEN-LAST:event_btnRegister1ActionPerformed
-    public static void copyFile(String origen, String destino) {
-        try {
-            Path FROM = Paths.get(origen);
-            Path TO = Paths.get(destino);
-            CopyOption[] options = new CopyOption[]{
-                StandardCopyOption.REPLACE_EXISTING,
-                StandardCopyOption.COPY_ATTRIBUTES
-            };
 
-            Files.copy(FROM, TO, options);
-            //JOptionPane.showMessageDialog(null, "Imagen Guardada");
-            System.out.println("Imagen Guardada");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error al Guardar Imagen");
-            System.err.println(e.toString());
-        }
-    }
 
 
     private void jButtonCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarFotoActionPerformed
@@ -466,18 +449,18 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
                 String nombreArchivo = fichero.getName();
                 String extension = nombreArchivo.substring(nombreArchivo.lastIndexOf(".") + 1);
-                
-                extension  = extension.replace(" ","");
-                
-                 System.out.println( "Extension de imagen "+extension.toLowerCase() );
-                 
-                if ( extension.toLowerCase().equals("png") || extension.toLowerCase().equals("jpg")) {
+
+                extension = extension.replace(" ", "");
+
+                System.out.println("Extension de imagen " + extension.toLowerCase());
+
+                if (extension.toLowerCase().equals("png") || extension.toLowerCase().equals("jpg")) {
 
                     System.out.println("nombreArchivo " + extension);
 
                     String archivo = destino + "" + this.cedula.getText() + "-" + nombreArchivo;
-                    
-                    this.rutaFotoOrigen  = Ruta;
+
+                    this.rutaFotoOrigen = Ruta;
                     this.rutaFotoDestino = archivo;
 
                     File folder = new File(destino);
@@ -492,7 +475,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                     jLabelFoto.setText("");
                     jLabelFoto.setIcon(mIcono);
 
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "No ha seleccionado una foto valida");
                 }
 
@@ -525,6 +508,10 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonCargarFotoActionPerformed
 
+    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEstadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlabelHuella;
@@ -532,6 +519,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnRegister1;
     private javax.swing.JTextField cedula;
     private javax.swing.JButton jButtonCargarFoto;
+    private javax.swing.JComboBox<String> jComboBoxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -546,7 +534,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField tfCargo;
-    private javax.swing.JTextField tfEstado;
     private javax.swing.JTextField tfLastname;
     private javax.swing.JTextField tfMiddlename;
     // End of variables declaration//GEN-END:variables

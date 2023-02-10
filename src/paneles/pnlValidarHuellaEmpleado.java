@@ -599,12 +599,12 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             nombre =  item.getNombre();
             validHuella = (byte[]) item.getHuella();
 
-            System.out.println("for "+nombre);
+            //System.out.println("for "+nombre);
             if ( lector.verificarHuella( validHuella, this.huella ) ){
                 tfNombres.setText(nombre);
 
                 this.tfApellidos.setText(item.getApellido());
-                this.tfCedula.setText(item.getCedula());
+                this.tfCedula.setText(Integer.toString(item.getCedula()));
                 this.tfCargo.setText(item.getCargo());
                 this.tfEstado.setText(item.getEstado());
                 
