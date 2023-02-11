@@ -3,30 +3,21 @@ package entidades;
 
 public class Persona {
     
-    private int idPersona;
     private int cedula;
     private String nombre;
     private String apellido;
-    private String telefono;
-    private int edad;
     private byte[] huella;
-    private String cargo;
+    private int cargo;
     private String estado;
     private String foto;
+    private int area;
+    private Area objArea;
+    private Cargo objCargo;
 
     public Persona() {
     }
 
-    /*public Persona(int idPersona, String dni, String nombre, String apellido, String telefono, int edad) {
-        this.idPersona = idPersona;
-        //this.cedula = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.edad = edad;
-    }*/
-    
-     public Persona(int cedula, String nombre, String apellido, String cargo, String estado, byte[] huella, String foto ) {
+     public Persona(int cedula, String nombre, String apellido, int cargo, String estado, byte[] huella, String foto, int area ) {
         
         this.cedula    = cedula;
         this.nombre    = nombre;
@@ -35,6 +26,19 @@ public class Persona {
         this.huella    = huella;
         this.cargo     = cargo;
         this.foto      = foto;
+        this.area      = area;
+    }
+     
+      public Persona(int cedula, String nombre, String apellido, int cargo, String estado, byte[] huella, String foto ) {
+        
+        this.cedula    = cedula;
+        this.nombre    = nombre;
+        this.apellido  = apellido;
+        this.estado    = estado;
+        this.huella    = huella;
+        this.cargo     = cargo;
+        this.foto      = foto;
+    
     }
     
     public Persona( String nombre, byte[] huella) {
@@ -42,13 +46,7 @@ public class Persona {
        this.huella = huella;
     }
 
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
-    }
+  
 
     public int getCedula() {
         return cedula;
@@ -74,23 +72,7 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-    
-    
+   
     public byte[] getHuella() {
         return huella;
     }
@@ -101,11 +83,11 @@ public class Persona {
     
     
     
-    public String getCargo() {
+    public int getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(int cargo) {
         this.cargo = cargo;
     }
     
@@ -125,6 +107,30 @@ public class Persona {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+    
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
+    
+      public Area getAreaObj() {
+        return objArea;
+    }
+
+    public void setAreaObj(Area obj) {
+        this.objArea = obj;
+    }
+    
+    public Cargo getCargoObj() {
+        return objCargo;
+    }
+
+    public void setCargoObj(Cargo obj) {
+        this.objCargo = obj;
     }
     
     

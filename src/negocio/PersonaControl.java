@@ -61,7 +61,7 @@ public class PersonaControl {
          return lista;
      }
     
-    public boolean insertar(int cedula, String nombre, String apellido, String cargo, String estado , byte[] huella, String foto ){
+    public boolean insertar(int cedula, String nombre, String apellido, int cargo, String estado , byte[] huella, String foto, int area ){
         
         persona.setCedula(cedula);
         persona.setNombre(nombre);
@@ -70,6 +70,7 @@ public class PersonaControl {
         persona.setEstado(estado);
         persona.setHuella(huella);
         persona.setFoto(foto);
+        persona.setArea(area);
         
         if (datos.insertar(persona)) {
             return true;
@@ -78,7 +79,7 @@ public class PersonaControl {
         }
     }
     
-    public DefaultTableModel mostrar(){
+    /*public DefaultTableModel mostrar(){
         List<Persona> lista = new ArrayList<>();
         
         lista.addAll(datos.listar());
@@ -101,7 +102,7 @@ public class PersonaControl {
         
         return modelo;
         
-    }
+    }*/
     
     public Persona buscar(String dni){
         persona = datos.buscar(dni);

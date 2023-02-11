@@ -36,8 +36,8 @@ public class Area {
         
     }
     
-    
+    @Override
      public String toString() {
-      return this.nombre;
+      return nombre;
    }
 }

@@ -9,7 +9,9 @@ import biometria.JSGD;
 import biometria.Secugen;
 import entidades.Area;
 import entidades.Persona;
+import entidades.Cargo;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
@@ -26,6 +28,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import negocio.AreaControl;
+import negocio.CargoControl;
 import negocio.PersonaControl;
 
 /**
@@ -44,21 +47,22 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     public pnlRegistroEmpleado() {
         
         
-        //Cargar area
-        AreaControl area = new AreaControl();
-        /*List<Area> listado = new ArrayList<>();
-        listado =  area.ListarAreas();
-        
-        for (Area item : listado ) {
-            //jComboBoxArea.addItem(item.toString());
-            System.out.println(item.getNombre());
-        }*/
-        
         initComponents();
+       
+        //Listar las  Areas
+        AreaControl area = new AreaControl();
+        List<Area> listadoAreas = new ArrayList<Area>();
+        listadoAreas =  area.ListarAreas();
+         
+        jComboBoxArea.addItem( new Area(0,"Seleccione el area"));
+        for (Area item : listadoAreas ) {
+ 
+           jComboBoxArea.addItem(item );  //Almacenar en el JbcomBoArea los datos obtenidos de la base de datos con el listado de las Areas de la empresa
+         
+        }
         
-                
-          
-        //helper.Helper.obtenerMAC();
+        
+     
     }
 
     /**
@@ -81,7 +85,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         tfLastname = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        tfCargo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -93,6 +96,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jComboBoxEstado = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jComboBoxArea = new javax.swing.JComboBox<>();
+        jComboCargo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -171,12 +175,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Apellidos");
 
-        tfCargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCargoActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Cargo");
@@ -244,7 +242,18 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Area");
 
-        jComboBoxArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Text", "1", "2", "3" }));
+        jComboBoxArea.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxAreaItemStateChanged(evt);
+            }
+        });
+        jComboBoxArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxAreaActionPerformed(evt);
+            }
+        });
+
+        jComboCargo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -280,8 +289,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tfCargo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(jComboBoxArea, 0, 250, Short.MAX_VALUE)
+                                        .addComponent(jComboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jLabel10)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -301,16 +310,13 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCargarFoto))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -328,19 +334,21 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel10)
                                     .addComponent(jComboBoxArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addComponent(tfCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(54, 54, 54)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel9)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonCargarFoto)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                                .addGap(4, 4, 4)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
@@ -365,7 +373,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -405,21 +413,21 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLastnameActionPerformed
 
-    private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCargoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCargoActionPerformed
-
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
 
         String mname    = tfMiddlename.getText();
         String apellido = tfLastname.getText();
         String cc       = cedula.getText();
-        String cargo    = tfCargo.getText();
+       // String cargo    = tfCargo.getText();
         //String estado   = tfEstado.getText();
         String estado   = jComboBoxEstado.getSelectedItem().toString();
+        Area areaSeleccionada   = (Area)jComboBoxArea.getSelectedItem();
+        Cargo cargoSeleccionado = (Cargo)jComboCargo.getSelectedItem();
+        //System.out.println("El id del pais es " + areaSeleccionada.getId());
+        //System.out.println("El nombre del pais es " + areaSeleccionada.getNombre());
 
-        if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || cargo.isEmpty() || estado.isEmpty()) {
+        if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || estado.isEmpty()) {
              helper.Helper.alerta("Debe diligenciar todos los campos");
         } 
         else if( !helper.Helper.isNumeric(cc)){
@@ -433,7 +441,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         } else {
             PersonaControl personaControl = new PersonaControl();
            
-            boolean insert = personaControl.insertar(Integer.parseInt(cc), mname, apellido, cargo, estado, this.huella, this.rutaFotoDestino);
+            boolean insert = personaControl.insertar(Integer.parseInt(cc), mname, apellido, cargoSeleccionado.getIdcargo(), estado, this.huella, this.rutaFotoDestino, areaSeleccionada.getId() );
 
             if (insert) {
                 helper.Helper.copyFile(this.rutaFotoOrigen, this.rutaFotoDestino);
@@ -444,7 +452,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 tfMiddlename.setText("");
                 tfLastname.setText("");
                 cedula.setText("");
-                tfCargo.setText("");
                 //tfEstado.setText("");
                 JlabelHuella.setIcon(null);
                 this.rutaFotoOrigen = null;
@@ -544,6 +551,43 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cedulaKeyTyped
 
+    private void jComboBoxAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAreaActionPerformed
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_jComboBoxAreaActionPerformed
+
+    private void jComboBoxAreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxAreaItemStateChanged
+        // TODO add your handling code here:
+        
+        //Validar que se cambie de opcion en la lista de areas
+        if( evt.getStateChange() == ItemEvent.SELECTED ){
+            //Validar que la opcion seleccionada sea valida
+            if( this.jComboBoxArea.getSelectedIndex() > 0) {
+                
+                Area areaSeleccionada = (Area)jComboBoxArea.getSelectedItem();
+
+               jComboCargo.setEnabled(false);
+               jComboCargo.removeAllItems();
+                //Listar Los cargos
+               CargoControl cargo        = new CargoControl();
+               List<Cargo> listadoCargo  = new ArrayList<Cargo>();
+               listadoCargo              = cargo.ListarCargosByIdArea( areaSeleccionada.getId() );
+               
+               for (Cargo item : listadoCargo ) {
+                   jComboCargo.addItem(item );  //Almacenar en el jComboCargo los datos obtenidos de la base de datos con el listado de los Cargos de la empresa
+               }
+               jComboCargo.setEnabled(true);
+            }
+            else{
+                jComboCargo.removeAllItems();
+                jComboCargo.setEnabled(false);
+            }
+       
+        }
+        
+    }//GEN-LAST:event_jComboBoxAreaItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlabelHuella;
@@ -551,8 +595,9 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private javax.swing.JButton btnRegister1;
     private javax.swing.JTextField cedula;
     private javax.swing.JButton jButtonCargarFoto;
-    private javax.swing.JComboBox<String> jComboBoxArea;
+    private javax.swing.JComboBox<Area> jComboBoxArea;
     private javax.swing.JComboBox<String> jComboBoxEstado;
+    private javax.swing.JComboBox<Cargo> jComboCargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -567,7 +612,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField tfCargo;
     private javax.swing.JTextField tfLastname;
     private javax.swing.JTextField tfMiddlename;
     // End of variables declaration//GEN-END:variables

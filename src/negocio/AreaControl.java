@@ -16,6 +16,12 @@ public class AreaControl {
     
     AreaDAO datos;
     Area area;
+    
+    public AreaControl() {
+        datos = new AreaDAO();
+        area  = new Area();
+    }
+    
      public List ListarAreas() {
          
          List<Area> lista = new ArrayList<>();
@@ -29,9 +35,7 @@ public class AreaControl {
          return lista;
      }
 
-    public AreaControl() {
    
-    }
      
      
 }
