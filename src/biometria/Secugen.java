@@ -15,10 +15,8 @@ import SecuGen.FDxSDKPro.jni.SGImpressionType;
 import SecuGen.FDxSDKPro.jni.SGPPPortAddr;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import javax.swing.ImageIcon;
-import negocio.PersonaControl;
+
 
 /**
  *
@@ -89,7 +87,7 @@ public class Secugen {
 
             } else {
                 System.out.println("OpenDevice() Error [" + ret + "]");
-                msgError = " No se ha detectado el Lector " + ret;
+                msgError = " No se ha detectado el Lector (Codigo error[ " + ret+ " ]";
                 this.deviceActivo = false;
             }
         } else {

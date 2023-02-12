@@ -621,7 +621,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         }
 
         if( !existeHuella ){
-            JOptionPane.showMessageDialog(null, "La huella no coincide");
+            helper.Helper.alerta("No existe registro de la huella capturada");
         }
 
     }//GEN-LAST:event_btnValidarHuellaActionPerformed
