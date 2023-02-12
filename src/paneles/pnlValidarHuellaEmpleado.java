@@ -10,7 +10,6 @@ import entidades.Area;
 import entidades.Persona;
 import entidades.Cargo;
 import java.awt.Image;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -32,6 +31,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
     public pnlValidarHuellaEmpleado() {
         initComponents();
           lector = new Secugen();
+          huella = null;
     }
 
     /**
@@ -66,7 +66,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btnRegister2 = new javax.swing.JButton();
+        btnCapturarHuella = new javax.swing.JButton();
         tfCedula = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         tfNombres = new javax.swing.JTextField();
@@ -77,7 +77,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         JlabelHuella1 = new javax.swing.JLabel();
-        btnRegister3 = new javax.swing.JButton();
+        btnValidarHuella = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabelFoto = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -306,13 +306,13 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        btnRegister2.setBackground(new java.awt.Color(219, 222, 218));
-        btnRegister2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegister2.setText("Capturar Huella");
-        btnRegister2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnRegister2.addActionListener(new java.awt.event.ActionListener() {
+        btnCapturarHuella.setBackground(new java.awt.Color(219, 222, 218));
+        btnCapturarHuella.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCapturarHuella.setText("Capturar Huella");
+        btnCapturarHuella.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnCapturarHuella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister2ActionPerformed(evt);
+                btnCapturarHuellaActionPerformed(evt);
             }
         });
 
@@ -375,13 +375,13 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             .addComponent(JlabelHuella1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
 
-        btnRegister3.setBackground(new java.awt.Color(219, 222, 218));
-        btnRegister3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegister3.setText("Validar");
-        btnRegister3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnRegister3.addActionListener(new java.awt.event.ActionListener() {
+        btnValidarHuella.setBackground(new java.awt.Color(219, 222, 218));
+        btnValidarHuella.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnValidarHuella.setText("Validar");
+        btnValidarHuella.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnValidarHuella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister3ActionPerformed(evt);
+                btnValidarHuellaActionPerformed(evt);
             }
         });
 
@@ -432,7 +432,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(btnRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
@@ -465,7 +465,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnValidarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(246, 246, 246))
         );
         jPanel4Layout.setVerticalGroup(
@@ -477,7 +477,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(btnRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,7 +504,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                     .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(33, 33, 33)
-                .addComponent(btnRegister3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnValidarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
@@ -532,33 +532,6 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-
-        String fname = tfFirstname.getText();
-        String mname = tfMiddlename.getText();
-        String lname = tfLastname.getText();
-        String address = tfAddress.getText();
-        String username = tfUsername.getText();
-        //String password = tfPassword.getText();
-
-       // Secugen lector = new Secugen();
-
-        this.lector.openDevice();
-        this.lector.getDeviceInfo();
-        this.lector.capturaHuella();
-        // lector.getImageIcon1();
-        this.huella = this.lector.getRegMin1();
-
-        JlabelHuella1.setIcon(lector.getImageIcon1());
-
-        /*if(fname.isEmpty() || mname.isEmpty() || lname.isEmpty() || address.isEmpty() || username.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Fill up the Form Properly.", "Error", JOptionPane.ERROR_MESSAGE);
-
-        }else{
-
-            //start the login process.
-            //userRegister(fname,mname,lname,address,username,password);
-
-        }*/
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void tfFirstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFirstnameActionPerformed
@@ -584,20 +557,20 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
 
-        String mname = tfMiddlename.getText();
-        PersonaControl personaControl = new PersonaControl();
-        personaControl.insertar2(this.huella, mname);
+      
 
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
-    private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed
+    private void btnValidarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarHuellaActionPerformed
         // TODO add your handling code here:
 
-        //String mname = tfMiddlename.getText();
+        
+         if ( this.huella == null) {
+            helper.Helper.alerta("Para validar se debe capturar la huella. ");
+            return;
+        }
         PersonaControl personaControl = new PersonaControl();
 
-        // System.out.println("personaControl.ListarPersonas();  "+personaControl.ListarPersonas());
-        //Persona listado = (Persona) personaControl.ListarPersonas();
         List<Persona> listado = new ArrayList<>();
         listado   = personaControl.ListarPersonas();
         Area  area;
@@ -607,12 +580,9 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         this.tfNombres.setText("");
         this.tfApellidos.setText("");
         this.tfCedula.setText("");
-        //this.tfCargo.setText("");
         this.tfEstado.setText("");
         this.jLabelFoto.setIcon(null);
-        //this.JlabelHuella1.setIcon(null);
         byte[] validHuella;
-        //int contador = 0;
         boolean existeHuella = false;
 
         for (Persona item : listado ) {
@@ -620,7 +590,6 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             nombre =  item.getNombre();
             validHuella = (byte[]) item.getHuella();
 
-            //System.out.println("for "+nombre);
             if ( lector.verificarHuella( validHuella, this.huella ) ){
                 
                 area   = item.getAreaObj();
@@ -646,7 +615,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                 break;
 
             }else{
-                System.out.println(" Error al comparar las huellas ");
+                //System.out.println(" Error al comparar las huellas ");
             }
 
         }
@@ -655,7 +624,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "La huella no coincide");
         }
 
-    }//GEN-LAST:event_btnRegister3ActionPerformed
+    }//GEN-LAST:event_btnValidarHuellaActionPerformed
 
     private void tfEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEstadoActionPerformed
         // TODO add your handling code here:
@@ -673,26 +642,40 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCedulaActionPerformed
 
-    private void btnRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister2ActionPerformed
+    private void btnCapturarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturarHuellaActionPerformed
         // TODO add your handling code here:
 
-        String msg = lector.openDevice();
+       this.btnCapturarHuella.setEnabled(false);
+          
+        lector.openDevice(); //Open dispositivo secugen
         if (lector.deviceActivo) {
-            lector.capturaHuella();
-            // lector.getImageIcon1();
-            this.huella = lector.getRegMin1();
-
-            System.out.println(lector.getRegMin1());
-            JlabelHuella1.setIcon(lector.getImageIcon1());
-
-            lector.closeDevice();
-            lector.deviceActivo = false;
+           
+            //Capturar huella
+            if( lector.capturaHuella() ) {
+                this.huella = lector.getRegMin1(); //Guardar la huella capturada 
+                JlabelHuella1.setIcon(lector.getImageIcon1()); // Mostrar la huella capturada, representada como imagen en ub Jlabel 
+                
+                //Limipiar Campos
+                 this.tfNombres.setText("");
+                 this.tfApellidos.setText("");
+                 this.tfCedula.setText("");
+                 this.tfEstado.setText("");
+                 this.jLabelFoto.setIcon(null);
+            } 
+            else{
+                helper.Helper.alerta( lector.getMsgError() );
+            }
+            lector.closeDevice(); // Cerrar Dispositivo Secugen
+            lector.deviceActivo = false; //Cambiar de estado la propiedad deviceActivo
+        } else {
+            lector.closeDevice(); // Cerrar Dispositivo Secugen
+            lector.deviceActivo = false; //Cambiar de estado la propiedad deviceActivo
+            helper.Helper.alerta( lector.getMsgError() );
         }
-        else{
-            JOptionPane.showMessageDialog(null,msg);
-        }
+        
+        this.btnCapturarHuella.setEnabled(true);
 
-    }//GEN-LAST:event_btnRegister2ActionPerformed
+    }//GEN-LAST:event_btnCapturarHuellaActionPerformed
 
     private void tfAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAreaActionPerformed
         // TODO add your handling code here:
@@ -706,10 +689,10 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlabelHuella;
     private javax.swing.JLabel JlabelHuella1;
+    private javax.swing.JButton btnCapturarHuella;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRegister1;
-    private javax.swing.JButton btnRegister2;
-    private javax.swing.JButton btnRegister3;
+    private javax.swing.JButton btnValidarHuella;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

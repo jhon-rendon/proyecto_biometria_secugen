@@ -44,6 +44,7 @@ public class Secugen {
     private boolean r2Captured = false;
     private boolean v1Captured = false;
     private ImageIcon imgIcon1;
+    private String msgError = null;
     
     public ImageIcon getImageIcon1(){
          
@@ -56,61 +57,48 @@ public class Secugen {
     }
     
     
+     public String getMsgError() {
+        return msgError;
+    }
+
     
-       public String openDevice() {
-        
-        String msg = null;
+     
+      public boolean openDevice() {
+
         this.deviceName = SGFDxDeviceName.SG_DEV_AUTO;
         fplib = new JSGFPLib();
-        
         ret = fplib.Init(this.deviceName);
-        if ((fplib != null) && (ret  == SGFDxErrorCode.SGFDX_ERROR_NONE))
-        {
+
+        if ((fplib != null) && (ret == SGFDxErrorCode.SGFDX_ERROR_NONE)) {
             System.out.println("SGFPLib Initialization Success");
-            //this.jLabelStatus.setText("JSGFPLib Initialization Success");
             this.devicePort = SGPPPortAddr.AUTO_DETECT;
-            
+
             ret = fplib.OpenDevice(0);
-            if (ret == SGFDxErrorCode.SGFDX_ERROR_NONE)
-            {
-                //this.jLabelStatus.setText("OpenDevice() Success [" + ret + "]");   
+            if (ret == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                 System.out.println("OpenDevice() Success [" + ret + "]");
                 ret = fplib.GetDeviceInfo(deviceInfo);
-                if (ret == SGFDxErrorCode.SGFDX_ERROR_NONE)
-                {
-                    /*this.jTextFieldSerialNumber.setText(new String(deviceInfo.deviceSN()));
-                    this.jTextFieldBrightness.setText(new String(Integer.toString(deviceInfo.brightness)));
-                    this.jTextFieldContrast.setText(new String(Integer.toString((int)deviceInfo.contrast)));
-                    this.jTextFieldDeviceID.setText(new String(Integer.toString(deviceInfo.deviceID)));
-                    this.jTextFieldFWVersion.setText(new String(Integer.toHexString(deviceInfo.FWVersion)));
-                    this.jTextFieldGain.setText(new String(Integer.toString(deviceInfo.gain)));
-                    this.jTextFieldImageDPI.setText(new String(Integer.toString(deviceInfo.imageDPI)));
-                    this.jTextFieldImageHeight.setText(new String(Integer.toString(deviceInfo.imageHeight)));
-                    this.jTextFieldImageWidth.setText(new String(Integer.toString(deviceInfo.imageWidth)));
-                    imgRegistration1 = new BufferedImage(deviceInfo.imageWidth, deviceInfo.imageHeight, BufferedImage.TYPE_BYTE_GRAY);
-                    imgRegistration2 = new BufferedImage(deviceInfo.imageWidth, deviceInfo.imageHeight, BufferedImage.TYPE_BYTE_GRAY);
-                    imgVerification = new BufferedImage(deviceInfo.imageWidth, deviceInfo.imageHeight, BufferedImage.TYPE_BYTE_GRAY);
-                    this.enableControls();*/
+                if (ret == SGFDxErrorCode.SGFDX_ERROR_NONE) {
                     imgRegistration1 = new BufferedImage(deviceInfo.imageWidth, deviceInfo.imageHeight, BufferedImage.TYPE_BYTE_GRAY);
                     this.deviceActivo = true;
-                }
-                else
-                    //this.jLabelStatus.setText("GetDeviceInfo() Error [" + ret + "]");
+                } else {
                     System.out.println("GetDeviceInfo() Error [" + ret + "]");
-                    msg = " Error al obtener la información del Lector "+ret;
-                   
-            }
-            else
-                //this.jLabelStatus.setText("OpenDevice() Error [" + ret + "]");    
+                    msgError = " Error al obtener la información del Lector " + ret;
+                    this.deviceActivo = false;
+                }
+                
+
+            } else {
                 System.out.println("OpenDevice() Error [" + ret + "]");
-                msg = " No se ha detectado el Lector "+ret;
-        }
-        else
+                msgError = " No se ha detectado el Lector " + ret;
+                this.deviceActivo = false;
+            }
+        } else {
             //this.jLabelStatus.setText("JSGFPLib Initialization Failed");
             System.out.println("JSGFPLib Initialization Failed");
-            msg = " No se ha detectado el Lector";
-        
-        return msg;
+            msgError = " No se ha detectado el Lector";
+            this.deviceActivo = false;
+        }
+        return this.deviceActivo;
     }
        
        public void closeDevice(){
@@ -118,15 +106,14 @@ public class Secugen {
        }
        
        
-        public void getDeviceInfo () {//GEN-FIRST:event_jButtonGetDeviceInfoActionPerformed
+        public boolean getDeviceInfo() {
         long iError;
 
         iError = fplib.GetDeviceInfo(deviceInfo);
-        if (ret == SGFDxErrorCode.SGFDX_ERROR_NONE)
-        {   
+        if (ret == SGFDxErrorCode.SGFDX_ERROR_NONE) {
             System.out.println("GetDeviceInfo() Success");
-            System.out.println("Serial: "+new String(deviceInfo.deviceSN()));
-            System.out.println("ID: "+new String(Integer.toString(deviceInfo.deviceID)));
+            System.out.println("Serial: " + new String(deviceInfo.deviceSN()));
+            System.out.println("ID: " + new String(Integer.toString(deviceInfo.deviceID)));
             /*this.jLabelStatus.setText( "GetDeviceInfo() Success");
             this.jTextFieldSerialNumber.setText(new String(deviceInfo.deviceSN()));
             this.jTextFieldBrightness.setText(new String(Integer.toString(deviceInfo.brightness)));
@@ -137,127 +124,107 @@ public class Secugen {
             this.jTextFieldImageDPI.setText(new String(Integer.toString(deviceInfo.imageDPI)));
             this.jTextFieldImageHeight.setText(new String(Integer.toString(deviceInfo.imageHeight)));
             this.jTextFieldImageWidth.setText(new String(Integer.toString(deviceInfo.imageWidth)));*/
+            return true;
+        } else {
+            System.out.println("GetDeviceInfo() Error : " + iError);
         }
-         else
-           // this.jLabelStatus.setText( "GetDeviceInfo() Error : " + iError);
-            System.out.println( "GetDeviceInfo() Error : " + iError);
-         
-    }//GEN-LAST:event_jButtonGetDeviceInfoActionPerformed
+        msgError = "Error al obtener la información del dispositivo" + iError;
+
+        return false;
+
+    }
         
-    public void capturaHuella() {//GEN-FIRST:event_jButtonCaptureR2ActionPerformed
         
+     public Boolean capturaHuella() {
+
         int[] quality = new int[1];
         byte[] imageBuffer1 = ((java.awt.image.DataBufferByte) imgRegistration1.getRaster().getDataBuffer()).getData();
         long iError = SGFDxErrorCode.SGFDX_ERROR_NONE;
-         
-        iError = fplib.GetImageEx(imageBuffer1,5 * 1000, 0, 50);        
+        boolean valid = false;
+
+        iError = fplib.GetImageEx(imageBuffer1, 5 * 1000, 0, 50);
         fplib.GetImageQuality(deviceInfo.imageWidth, deviceInfo.imageHeight, imageBuffer1, quality);
-        //this.jProgressBarR2.setValue(quality[0]);
         SGFingerInfo fingerInfo = new SGFingerInfo();
         fingerInfo.FingerNumber = SGFingerPosition.SG_FINGPOS_LI;
         fingerInfo.ImageQuality = quality[0];
         fingerInfo.ImpressionType = SGImpressionType.SG_IMPTYPE_LP;
         fingerInfo.ViewNumber = 1;
 
-        if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE)
-        {            
-            //this.jLabelRegisterImage2.setIcon(new ImageIcon(imgRegistration2.getScaledInstance(130,150,Image.SCALE_DEFAULT)));
-            this.imgIcon1 = new ImageIcon(imgRegistration1.getScaledInstance(130,150,Image.SCALE_DEFAULT));
-            
-            if (quality[0] == 0)
-               // this.jLabelStatus.setText("GetImageEx() Success [" + ret + "] but image quality is [" + quality[0] + "]. Please try again"); 
-                 System.out.println("GetImageEx() Success [" + ret + "] but image quality is [" + quality[0] + "]. Please try again");
-            else
-            {            
-                //this.jLabelStatus.setText("GetImageEx() Success [" + ret + "]"); 
+        if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE) {
+            this.imgIcon1 = new ImageIcon(imgRegistration1.getScaledInstance(130, 150, Image.SCALE_DEFAULT));
+
+            if (quality[0] == 0) {
+
+                System.out.println("GetImageEx() Success [" + ret + "] but image quality is [" + quality[0] + "]. Please try again");
+                this.msgError = "GetImageEx() Success [" + ret + "] but image quality is [" + quality[0] + "]. Please try again";
+            } else {
                 System.out.println("GetImageEx() Success [" + ret + "]");
+                this.msgError = "GetImageEx() Success [" + ret + "]";
 
                 iError = fplib.CreateTemplate(fingerInfo, imageBuffer1, regMin1);
-                if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE)
-                {
-                    System.out.println("Second registration image was captured");
-                   //this.jLabelStatus.setText("Second registration image was captured");
-                   // r2Captured = true;
-                  // this.enableRegisterAndVerifyControls();
-                }
-                else
+                if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE) {
+                    System.out.println("Huella Capturada exitosamente");
+                    this.msgError = "Huella Capturada exitosamente";
+                    valid = true;
+                } else {
                     System.out.println("CreateTemplate() Error : " + iError);
-                   //this.jLabelStatus.setText("CreateTemplate() Error : " + iError);
+                }
+                msgError = "Error al crear la plantilla " + iError;
             }
-         }
-         else
-            //this.jLabelStatus.setText("GetImageEx() Error : " + iError);
+        } else {
+            valid = false;
             System.out.println("GetImageEx() Error : " + iError);
-        
-        
+            msgError = "Error al capturar la Huella.  GetImageEx() Error : " + iError;
+        }
+
+        return valid;
     }
     
     
-    public boolean verificarHuella( byte[] verifyHuella , byte[] huellaCapturada) {//GEN-FIRST:event_jButtonCaptureR1ActionPerformed
      
-        /******Crear plantilla desde la base de datos ****/
-                    
-                     long iError = SGFDxErrorCode.SGFDX_ERROR_NONE;
-                     //byte[] validHuella = new byte[400];
-                     long secuLevel = (long) 5;
-                      //jComboBoxRegisterSecurityLevel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LOWEST", "LOWER", "LOW", "BELOW_NORMAL", "NORMAL", "ABOVE_NORMAL", "HIGH", "HIGHER", "HIGHEST" }));
-        
+      public boolean verificarHuella(byte[] verifyHuella, byte[] huellaCapturada) {
 
-                    try {
-                        //byte[] regMin1 = new byte[400];
-                        
-                        //HashMap registroHuella = personaControl.SelectBytesEspecial();
-                        
-                        boolean[] matched = new boolean[1];
-                        int[] matchScore = new int[1];
-                        
-                        //validHuella      = (byte[]) registroHuella.get("huella");
-                       // String nombre    = registroHuella.get("nombre").toString();
-                        
-                        //String nombre = new String((byte[]) registroHuella.get("nombre"), StandardCharsets.UTF_8);
-         
-                        
-                        System.out.println("Comparando Huellas");
-                        iError = fplib.MatchTemplate(huellaCapturada,verifyHuella, secuLevel, matched); 
-                        
-                        
-                        if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE)
-                        {
-                                matchScore[0] = 0;
-                                iError = fplib.GetMatchingScore(huellaCapturada, verifyHuella, matchScore);
+        /**
+         * ****Crear plantilla desde la base de datos ***
+         */
+        long iError = SGFDxErrorCode.SGFDX_ERROR_NONE;
+        long secuLevel = (long) 5;
+        //boolean valid = false;
 
-                                if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE)
-                                {
-                                    if (matched[0]){
-                                        //this.jLabelStatus.setText( "Registration Success, Matching Score: " + matchScore[0]);
-                                        System.out.println("Las huellas coinciden");
-                                        return true;
-                                    }
-                                    
-                                    else{
-                                        //this.jLabelStatus.setText( "Registration Fail, Matching Score: " + matchScore[0]);
-                                        System.out.println("Las huellas No coinciden Matching Score " + matchScore[0]);
-                                        return false;
-                                    }
+        try {
+            boolean[] matched = new boolean[1];
+            int[] matchScore = new int[1];
 
-                                }
-                            
-                             
-                           
-                        }else{
-                             System.out.println("Las huellas No coinciden");
-                             return false;
-                        }
-         
-                        
-                        //System.out.println(registroHuella.get("huella"));
-                        //System.out.println(registroHuella.get("template_imagen"));
-                        
-                    } catch (Exception ex) {
-                        //Logger.getLogger(JSGD.class.getName()).log(Level.SEVERE, null, ex);
-                        System.out.println(" Error "+ex);
+            System.out.println("Comparando Huellas");
+            iError = fplib.MatchTemplate(huellaCapturada, verifyHuella, secuLevel, matched);
+
+            if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE) {
+                matchScore[0] = 0;
+                iError = fplib.GetMatchingScore(huellaCapturada, verifyHuella, matchScore);
+
+                if (iError == SGFDxErrorCode.SGFDX_ERROR_NONE) {
+                    if (matched[0]) {
+                        System.out.println("Las huellas coinciden");
+                        msgError = "Las huellas comparadas coinciden";
+                        return true;
+                    } else {
+                        System.out.println("Las huellas No coinciden Matching Score " + matchScore[0]);
+                        msgError = "Las huella no coincide Matching Score " + matchScore[0];
+                        return false;
                     }
-                    
-                    return false;
+                }
+
+            } else {
+                System.out.println("Las huellas No coinciden");
+                msgError = "Error al validar la huella ";
+                return false;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(" Error " + ex);
+            msgError = " Se presenta error al comparar las huellas "+ex ;
+        }
+
+        return false;
     }
 }

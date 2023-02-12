@@ -5,7 +5,6 @@
  */
 package paneles;
 
-import biometria.JSGD;
 import biometria.Secugen;
 import entidades.Area;
 import entidades.Persona;
@@ -56,13 +55,9 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
          
         jComboBoxArea.addItem( new Area(0,"Seleccione el area"));
         for (Area item : listadoAreas ) {
- 
-           jComboBoxArea.addItem(item );  //Almacenar en el JbcomBoArea los datos obtenidos de la base de datos con el listado de las Areas de la empresa
-         
+            jComboBoxArea.addItem(item );  //Almacenar en el JbcomBoArea los datos obtenidos de la base de datos con el listado de las Areas de la empresa
         }
-        
-        
-     
+    
     }
 
     /**
@@ -78,7 +73,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnRegister = new javax.swing.JButton();
+        btnCapturarHuella = new javax.swing.JButton();
         cedula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tfMiddlename = new javax.swing.JTextField();
@@ -89,7 +84,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         JlabelHuella = new javax.swing.JLabel();
-        btnRegister1 = new javax.swing.JButton();
+        btnRegistrarEmpleado = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabelFoto = new javax.swing.JLabel();
         jButtonCargarFoto = new javax.swing.JButton();
@@ -127,13 +122,13 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
 
-        btnRegister.setBackground(new java.awt.Color(219, 222, 218));
-        btnRegister.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegister.setText("Capturar Huella");
-        btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+        btnCapturarHuella.setBackground(new java.awt.Color(219, 222, 218));
+        btnCapturarHuella.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCapturarHuella.setText("Capturar Huella");
+        btnCapturarHuella.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnCapturarHuella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
+                btnCapturarHuellaActionPerformed(evt);
             }
         });
 
@@ -200,13 +195,13 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnRegister1.setBackground(new java.awt.Color(219, 222, 218));
-        btnRegister1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegister1.setText("Registrar");
-        btnRegister1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnRegister1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarEmpleado.setBackground(new java.awt.Color(219, 222, 218));
+        btnRegistrarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegistrarEmpleado.setText("Registrar");
+        btnRegistrarEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnRegistrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister1ActionPerformed(evt);
+                btnRegistrarEmpleadoActionPerformed(evt);
             }
         });
 
@@ -266,7 +261,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -294,7 +289,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                             .addComponent(jLabel10)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -343,11 +338,11 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
-                        .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -377,29 +372,34 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnCapturarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturarHuellaActionPerformed
         // TODO add your handling code here:
 
         Secugen lector = new Secugen();
-
-        String msg = lector.openDevice();
+         this.btnCapturarHuella.setEnabled(false);
+          
+        lector.openDevice(); //Open dispositivo secugen
         if (lector.deviceActivo) {
-
-            //lector.getDeviceInfo();
-            lector.capturaHuella();
-            // lector.getImageIcon1();
-            this.huella = lector.getRegMin1();
-
-            JlabelHuella.setIcon(lector.getImageIcon1());
-
-            lector.closeDevice();
-            lector.deviceActivo = false;
+           
+            //Capturar huella
+            if( lector.capturaHuella() ) {
+                this.huella = lector.getRegMin1(); //Guardar la huella capturada 
+                JlabelHuella.setIcon(lector.getImageIcon1()); // Mostrar la huella capturada, representada como imagen en ub Jlabel   
+            } 
+            else{
+                helper.Helper.alerta( lector.getMsgError() );
+            }
+            lector.closeDevice(); // Cerrar Dispositivo Secugen
+            lector.deviceActivo = false; //Cambiar de estado la propiedad deviceActivo
         } else {
-            JOptionPane.showMessageDialog(null, msg);
+            lector.closeDevice(); // Cerrar Dispositivo Secugen
+            lector.deviceActivo = false; //Cambiar de estado la propiedad deviceActivo
+            helper.Helper.alerta( lector.getMsgError() );
         }
-
-  
-    }//GEN-LAST:event_btnRegisterActionPerformed
+        
+        this.btnCapturarHuella.setEnabled(true);
+        
+    }//GEN-LAST:event_btnCapturarHuellaActionPerformed
 
     private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
         // TODO add your handling code here:
@@ -413,20 +413,16 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLastnameActionPerformed
 
-    private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
+    private void btnRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEmpleadoActionPerformed
         // TODO add your handling code here:
 
         String mname    = tfMiddlename.getText();
         String apellido = tfLastname.getText();
         String cc       = cedula.getText();
-       // String cargo    = tfCargo.getText();
-        //String estado   = tfEstado.getText();
         String estado   = jComboBoxEstado.getSelectedItem().toString();
         Area areaSeleccionada   = (Area)jComboBoxArea.getSelectedItem();
         Cargo cargoSeleccionado = (Cargo)jComboCargo.getSelectedItem();
-        //System.out.println("El id del pais es " + areaSeleccionada.getId());
-        //System.out.println("El nombre del pais es " + areaSeleccionada.getNombre());
-
+       
         if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || estado.isEmpty()) {
              helper.Helper.alerta("Debe diligenciar todos los campos");
         } 
@@ -452,20 +448,19 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 tfMiddlename.setText("");
                 tfLastname.setText("");
                 cedula.setText("");
-                //tfEstado.setText("");
                 JlabelHuella.setIcon(null);
                 this.rutaFotoOrigen = null;
                 this.rutaFotoDestino = null;
                 jLabelFoto.setIcon(null);
             }
-            else{
-                
+           else{
+                helper.Helper.alerta( "Error al crear el registro del empleado, intenta nuevamente");
             }
 
         }
 
 
-    }//GEN-LAST:event_btnRegister1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarEmpleadoActionPerformed
 
 
 
@@ -475,6 +470,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         //Adjuntar Foto
         String Ruta = "";
         String destino = "\\10.190.15.1/Repositorio/Biometria/";
+        //String destino = "C:\\appjava/tmp/";
         destino = destino.replace("\\", "\\\\");
 
         JFileChooser jFileChooser = new JFileChooser();
@@ -591,8 +587,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlabelHuella;
-    private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnRegister1;
+    private javax.swing.JButton btnCapturarHuella;
+    private javax.swing.JButton btnRegistrarEmpleado;
     private javax.swing.JTextField cedula;
     private javax.swing.JButton jButtonCargarFoto;
     private javax.swing.JComboBox<Area> jComboBoxArea;

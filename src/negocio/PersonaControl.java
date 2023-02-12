@@ -5,7 +5,6 @@ import SecuGen.FDxSDKPro.jni.SGFDxErrorCode;
 import SecuGen.FDxSDKPro.jni.SGFingerInfo;
 import SecuGen.FDxSDKPro.jni.SGFingerPosition;
 import SecuGen.FDxSDKPro.jni.SGImpressionType;
-import biometria.JSGD;
 import datos.PersonaDAO;
 import entidades.Persona;
 import java.awt.Image;
@@ -28,24 +27,7 @@ public class PersonaControl {
         persona = new Persona();
     }
     
-     public String insertar2( byte [] huella, String nombre ){
-         
-         if( datos.InsertEspecialBinaryArray(huella, nombre) ) {
-            return "OK";
-        }else{
-            return "Ocurrio un error en el registro";
-        }
-     }
-    
-     public HashMap SelectBytesEspecial() {
-           
-         if( datos.SelectBytesEspecial() == null){
-                System.out.println(" Sin registros NULL");
-         }else{
-              System.out.println(" Con Registros");
-         }
-         return datos.SelectBytesEspecial();
-     }
+  
      
      
       public List ListarPersonas() {

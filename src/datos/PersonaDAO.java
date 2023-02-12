@@ -17,83 +17,7 @@ public class PersonaDAO implements PersonaInterface {
     PreparedStatement ps;
     ResultSet rs;
 
-    public Boolean InsertEspecialBinaryArray(byte[] huella, String nombre) {
-        boolean resp = false;
 
-        try {
-
-            String sql = "INSERT INTO prueba (nombre,huella) VALUES (?, ?)";
-            ps = Conexion.getConexion().prepareStatement(sql);
-
-            ps.setString(1, nombre);
-            ps.setBytes(2, huella);
-            //ps.setBytes(3, img); 
-
-            if (ps.executeUpdate() > 0) {
-                resp = true;
-            }
-            ps.close();
-            Conexion.cerrarConexion();
-            //ps.executeUpdate();
-            //ps.close();
-            //conexion.close();
-            return true;
-        } catch (SQLException sqex) {
-            System.out.println("Error en insert SQLException " + sqex);
-            //System.out.println("Error en Insert -> :"+HandlerOracle.class.getName() + " " + Level.SEVERE + " " + sqex.toString());
-            /*mensaje = "Error en Insert: " +
-                    HandlerOracle.class.getName() + " " + Level.SEVERE + " " + sqex.toString();
-            this.error = sqex.getErrorCode();*/
-        } catch (Exception sqex) {
-            System.out.println("Error en insert Exception " + sqex);
-            /*System.out.println("Error en Insert -> :"+HandlerOracle.class.getName() + " " + Level.SEVERE + " " + sqex.toString());
-            mensaje = "Error en Insert: " +
-                    HandlerOracle.class.getName() + " " + Level.SEVERE + " " + sqex.toString();
-             */
-        }
-        return false;
-    }
-
-    public HashMap SelectBytesEspecial() {
-
-        //Connection conn = cnx.conectar();
-
-        HashMap<String, byte[]> hashmap = new HashMap<>();
-        
-       
-        
-        try{
-        String consulta = "SELECT huella,nombre FROM prueba ";
-         ps = Conexion.getConexion().prepareStatement(consulta);
-         rs = ps.executeQuery();
-
-          if (rs.next()) {   
-                System.out.println(" Listando Registros de la base de datos");
-                
-                hashmap.put("huella", rs.getBytes("huella"));
-                hashmap.put("nombre", rs.getString("nombre").getBytes());
-                
-                return hashmap;
-          }
-          
-           else {
-            //this.mensaje = "No existe un registro de huella para rut: "+rut;
-            System.out.println("No existe un registro de huella");
-            
-            //return null;
-        }
-
-            rs.close();
-            ps.close();
-            Conexion.cerrarConexion();
-         } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }   
-       
-        return hashmap;
-            
-    
-    }
 
     @Override
     public boolean insertar(Persona obj) {
@@ -102,6 +26,7 @@ public class PersonaDAO implements PersonaInterface {
         
         try {
             String sql = "insert into APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,idarea,idcargo,fecha_creacion,hora_creacion) values(?, ?, ?, ?, ?, ?, ?, ? , SYSDATE,to_char(SYSDATE, 'HH24:MI:SS'))";
+            //String sql = "insert into APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,idarea,idcargo,fecha_creacion,hora_creacion) values(?, ?, ?, ?, ?, ?, ?, ? , NOW(),NOW())";
 
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, obj.getCedula());
@@ -184,7 +109,7 @@ public class PersonaDAO implements PersonaInterface {
 
         Persona persona = null;
 
-        try {
+        /*try {
             String consulta = "select * from persona where dni = ?";
 
             ps = Conexion.getConexion().prepareStatement(consulta);
@@ -208,7 +133,7 @@ public class PersonaDAO implements PersonaInterface {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         return persona;
     }
@@ -218,7 +143,7 @@ public class PersonaDAO implements PersonaInterface {
 
         boolean resp = false;
 
-        try {
+        /*try {
             String update = "update persona set dni =?, nombre =?, apellido = ?, telefono = ?, edad = ? where idPersona = ?";
 
             ps = Conexion.getConexion().prepareStatement(update);
@@ -235,7 +160,7 @@ public class PersonaDAO implements PersonaInterface {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         return resp;
     }
@@ -244,7 +169,7 @@ public class PersonaDAO implements PersonaInterface {
     public boolean eliminar(String dni) {
         boolean resp = false;
 
-        try {
+        /*try {
             String delete = "delete from persona where dni = ?";
             ps = Conexion.getConexion().prepareStatement(delete);
             ps.setString(1, dni);
@@ -254,7 +179,7 @@ public class PersonaDAO implements PersonaInterface {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         return resp;
 
