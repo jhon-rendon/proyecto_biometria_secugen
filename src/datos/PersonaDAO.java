@@ -110,10 +110,10 @@ public class PersonaDAO implements PersonaInterface {
 
         try {
             //String consulta = "SELECT documento,nombre,apellidos,idcargo,activo,huella1,foto,idarea FROM APPBIOMETRIA.PERSONA";
-            String consulta = " select documento,p.nombre,apellidos,p.idcargo,activo,huella1,foto,p.idarea,c.nombre nombre_cargo," +
+            String consulta = " SELECT documento,p.nombre,apellidos,p.idcargo,activo,huella1,foto,p.idarea,c.nombre nombre_cargo," +
                               " a.nombre nombre_area" +
                               " FROM APPBIOMETRIA.PERSONA p, APPBIOMETRIA.area a, APPBIOMETRIA.cargo c " +
-                              " where p.IDCARGO = c.IDCARGO and  p.IDAREA= a.IDAREA AND documento = "+cedula+" ";
+                              " WHERE p.IDCARGO = c.IDCARGO and  p.IDAREA= a.IDAREA AND documento = "+cedula+" ";
             ps = Conexion.getConexion().prepareStatement(consulta);
 
             rs = ps.executeQuery();
@@ -185,7 +185,7 @@ public class PersonaDAO implements PersonaInterface {
     }
 
     @Override
-    public boolean eliminar(String dni) {
+    public boolean eliminar(int cc) {
         boolean resp = false;
 
         /*try {
@@ -205,7 +205,7 @@ public class PersonaDAO implements PersonaInterface {
     }
 
     @Override
-    public Persona buscar(String dni) {
+    public Persona buscar(int cc){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -10,9 +10,9 @@ public interface PersonaInterface {
     
     public List<Persona> listar();
     
-    public Persona buscar(String dni);
+    public Persona buscar(int cc);
     
     public boolean actualizar(Persona obj);
     
-    public boolean eliminar(String dni);
+    public boolean eliminar(int cc);
 }

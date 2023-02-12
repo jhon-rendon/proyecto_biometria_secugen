@@ -13,8 +13,8 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import negocio.PersonaControl;
+import negocio.VisitaControl;
 
 /**
  *
@@ -612,6 +612,17 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
 
                 System.out.println(" Huella ok "+nombre);
                 existeHuella = true;
+                
+                //Insert de la visita
+                VisitaControl visita = new VisitaControl();
+                
+                //Registro Insertado
+                if( visita.insertar( item.getCedula()) ){
+                    helper.Helper.alerta(" Visita Registrada ");
+                }else{
+                 helper.Helper.alerta(" No se logro registrar La visita ");
+                }
+                
                 break;
 
             }else{

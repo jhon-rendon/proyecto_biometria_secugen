@@ -86,7 +86,7 @@ public class PersonaControl {
         return modelo;
         
     }*/
-    public Persona buscar(String dni) {
+    public Persona buscar(int cc ) {
         //persona = datos.buscar(dni);
         return persona;
     }
@@ -99,8 +99,8 @@ public class PersonaControl {
         }
     }
 
-    public String eliminar(String dni) {
-        if (datos.eliminar(dni)) {
+    public String eliminar(int cc) {
+        if (datos.eliminar(cc)) {
             return "OK";
         } else {
             return "Ocurrio un error al eliminar";
