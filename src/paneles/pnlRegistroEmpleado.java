@@ -423,7 +423,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         Area areaSeleccionada   = (Area)jComboBoxArea.getSelectedItem();
         Cargo cargoSeleccionado = (Cargo)jComboCargo.getSelectedItem();
        
-        if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || estado.isEmpty()) {
+        if (mname.isEmpty() || apellido.isEmpty() || cc.isEmpty() || estado.isEmpty() || this.jComboBoxArea.getSelectedIndex() == 0 ) {
              helper.Helper.alerta("Debe diligenciar todos los campos");
         } 
         else if( !helper.Helper.isNumeric(cc)){
@@ -469,8 +469,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
         //Adjuntar Foto
         String Ruta = "";
-        String destino = "\\10.190.15.1/Repositorio/Biometria/";
-        //String destino = "C:\\appjava/tmp/";
+        //String destino = "\\10.190.15.1/Repositorio/Biometria/";
+        String destino = "C:\\appjava/tmp/";
         destino = destino.replace("\\", "\\\\");
 
         JFileChooser jFileChooser = new JFileChooser();
