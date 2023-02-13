@@ -46,6 +46,7 @@ public class PersonaControl {
 
     public boolean insertar(int cedula, String nombre, String apellido, int cargo, String estado, byte[] huella, String foto, int area) {
 
+        persona = new Persona();
         persona.setCedula(cedula);
         persona.setNombre(nombre);
         persona.setApellido(apellido);
@@ -54,12 +55,12 @@ public class PersonaControl {
         persona.setHuella(huella);
         persona.setFoto(foto);
         persona.setArea(area);
-
         if (datos.insertar(persona)) {
             return true;
         } else {
             return false;
         }
+     
     }
 
     /*public DefaultTableModel mostrar(){

@@ -25,9 +25,9 @@ public class PersonaDAO implements PersonaInterface {
         boolean resp = false;
         
         try {
-            String sql = "insert into APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,idarea,idcargo,fecha_creacion,hora_creacion) values(?, ?, ?, ?, ?, ?, ?, ? , SYSDATE,to_char(SYSDATE, 'HH24:MI:SS'))";
+            String sql = "INSERT INTO APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,idarea,idcargo,fecha_creacion,hora_creacion) values(?, ?, ?, ?, ?, ?, ?, ? , SYSDATE,to_char(SYSDATE, 'HH24:MI:SS'))";
            // String sql = "insert into APPBIOMETRIA.PERSONA(documento, nombre, apellidos, activo,huella1,foto,idarea,idcargo,fecha_creacion,hora_creacion) values(?, ?, ?, ?, ?, ?, ?, ? , NOW(),NOW())";
-
+           
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, obj.getCedula());
             ps.setString(2, obj.getNombre());

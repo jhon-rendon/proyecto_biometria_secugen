@@ -436,7 +436,6 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
             byte[] validHuella;
             for (Persona item : listado) {
-
                 validHuella = (byte[]) item.getHuella();
                 //Validar que la huella capturada no exista en la base de datos
                 if (lector.verificarHuella(validHuella, this.huella)) {
@@ -444,9 +443,21 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                     return;
                 }
             }
-
+            
+            /*System.out.println("Insertando empleado ");
+            System.out.println("Integer.parseInt(cc) "+Integer.parseInt(cc));
+            System.out.println("mname "+mname);
+            System.out.println("apellido "+apellido);
+            System.out.println("cargoSeleccionado.getIdcargo() "+cargoSeleccionado.getIdcargo());
+            System.out.println("estado "+estado);
+            System.out.println("this.huella "+this.huella);
+            System.out.println("this.rutaFotoDestino) "+this.rutaFotoDestino);
+            System.out.println("areaSeleccionada.getId() "+areaSeleccionada.getId());*/
+      
+          
+           
             boolean insert = personaControl.insertar(Integer.parseInt(cc), mname, apellido, cargoSeleccionado.getIdcargo(), estado, this.huella, this.rutaFotoDestino, areaSeleccionada.getId());
-
+    
             if (insert) {
 
                 helper.Helper.copyFile(this.rutaFotoOrigen, this.rutaFotoDestino); //Copiar foto
