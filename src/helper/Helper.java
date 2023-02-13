@@ -67,6 +67,16 @@ public class Helper {
 
         JOptionPane.showMessageDialog(null, msg);
     }
+    
+      public static void alertaError(String msg) {
+
+        JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public static void alertaSuccess(String msg) {
+
+        
+    }
 
     public static boolean isNumeric(String s) {
         try {

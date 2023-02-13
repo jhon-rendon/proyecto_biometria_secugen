@@ -277,7 +277,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/web.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/huella.png"))); // NOI18N
         jLabel7.setText("VALIDAR HUELLA");
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 51));
@@ -614,14 +614,14 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                 existeHuella = true;
                 
                 //Insert de la visita
-                VisitaControl visita = new VisitaControl();
+                /*VisitaControl visita = new VisitaControl();
                 
                 //Registro Insertado
                 if( visita.insertar( item.getCedula()) ){
                     helper.Helper.alerta(" Visita Registrada ");
                 }else{
                  helper.Helper.alerta(" No se logro registrar La visita ");
-                }
+                }*/
                 
                 break;
 
