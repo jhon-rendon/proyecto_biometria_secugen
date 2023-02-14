@@ -51,6 +51,8 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         for (Area item : listadoAreas) {
             jComboBoxArea.addItem(item);  //Almacenar en el JbcomBoArea los datos obtenidos de la base de datos con el listado de las Areas de la empresa
         }
+        
+        jLabelMsgLector.setVisible(false);
 
     }
 
@@ -86,6 +88,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jComboBoxArea = new javax.swing.JComboBox<>();
         jComboCargo = new javax.swing.JComboBox<>();
+        jLabelMsgLector = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -120,6 +123,11 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         btnCapturarHuella.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCapturarHuella.setText("Capturar Huella");
         btnCapturarHuella.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnCapturarHuella.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCapturarHuellaMousePressed(evt);
+            }
+        });
         btnCapturarHuella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapturarHuellaActionPerformed(evt);
@@ -236,18 +244,23 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
         jComboCargo.setEnabled(false);
 
+        jLabelMsgLector.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelMsgLector.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMsgLector.setText("Coloque la Huella ..");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMsgLector))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -274,7 +287,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                         .addComponent(jComboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addComponent(jLabel10)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(145, 145, 145)
                         .addComponent(btnRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +341,9 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                                     .addComponent(jLabel6)
                                     .addComponent(jComboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
-                        .addComponent(btnRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegistrarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelMsgLector))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -383,6 +398,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
         }
 
         this.btnCapturarHuella.setEnabled(true);
+        this.jLabelMsgLector.setVisible(false);
 
     }//GEN-LAST:event_btnCapturarHuellaActionPerformed
 
@@ -586,6 +602,12 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jComboBoxAreaItemStateChanged
 
+    private void btnCapturarHuellaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapturarHuellaMousePressed
+        // TODO add your handling code here:
+        
+         this.jLabelMsgLector.setVisible(true);
+    }//GEN-LAST:event_btnCapturarHuellaMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JlabelHuella;
@@ -605,6 +627,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelMsgLector;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -32,6 +32,8 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         initComponents();
           lector = new Secugen();
           huella = null;
+          
+          jLabelMsgLector.setVisible(false);
     }
 
     /**
@@ -84,6 +86,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         tfArea = new javax.swing.JTextField();
         tfCargo = new javax.swing.JTextField();
+        jLabelMsgLector = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 51));
 
@@ -310,6 +313,11 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         btnCapturarHuella.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCapturarHuella.setText("Capturar Huella");
         btnCapturarHuella.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        btnCapturarHuella.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCapturarHuellaMousePressed(evt);
+            }
+        });
         btnCapturarHuella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapturarHuellaActionPerformed(evt);
@@ -420,6 +428,10 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
             }
         });
 
+        jLabelMsgLector.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelMsgLector.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMsgLector.setText("Coloque la Huella ..");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -432,7 +444,9 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelMsgLector)
+                            .addComponent(btnCapturarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
@@ -503,7 +517,9 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addGap(33, 33, 33)
+                .addGap(9, 9, 9)
+                .addComponent(jLabelMsgLector)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnValidarHuella, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -685,6 +701,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
         }
         
         this.btnCapturarHuella.setEnabled(true);
+        this.jLabelMsgLector.setVisible(false);
 
     }//GEN-LAST:event_btnCapturarHuellaActionPerformed
 
@@ -695,6 +712,11 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
     private void tfCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCargoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCargoActionPerformed
+
+    private void btnCapturarHuellaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapturarHuellaMousePressed
+        // TODO add your handling code here:
+         this.jLabelMsgLector.setVisible(true);
+    }//GEN-LAST:event_btnCapturarHuellaMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -721,6 +743,7 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelFoto;
+    private javax.swing.JLabel jLabelMsgLector;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
