@@ -460,19 +460,9 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 }
             }
             
-            /*System.out.println("Insertando empleado ");
-            System.out.println("Integer.parseInt(cc) "+Integer.parseInt(cc));
-            System.out.println("mname "+mname);
-            System.out.println("apellido "+apellido);
-            System.out.println("cargoSeleccionado.getIdcargo() "+cargoSeleccionado.getIdcargo());
-            System.out.println("estado "+estado);
-            System.out.println("this.huella "+this.huella);
-            System.out.println("this.rutaFotoDestino) "+this.rutaFotoDestino);
-            System.out.println("areaSeleccionada.getId() "+areaSeleccionada.getId());*/
-      
           
-           
-            boolean insert = personaControl.insertar(Integer.parseInt(cc), mname, apellido, cargoSeleccionado.getIdcargo(), estado, this.huella, this.rutaFotoDestino, areaSeleccionada.getId());
+            String rutaFoto = this.rutaFotoDestino.replace("\\", "");
+            boolean insert = personaControl.insertar(Integer.parseInt(cc), mname, apellido, cargoSeleccionado.getIdcargo(), estado, this.huella, rutaFoto, areaSeleccionada.getId());
     
             if (insert) {
 
@@ -508,7 +498,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
 
         JFileChooser jFileChooser = new JFileChooser();
         jFileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP & PNG", "jpg", "png");
+        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JGP JPEG & PNG", "jpg", "png", "jpeg");
         jFileChooser.setFileFilter(filtrado);
 
         int respuesta = jFileChooser.showOpenDialog(this);
@@ -529,7 +519,7 @@ public class pnlRegistroEmpleado extends javax.swing.JPanel {
                 extension = extension.replace(" ", "");
 
                 //System.out.println("Extension de imagen " + extension.toLowerCase());
-                if (extension.toLowerCase().equals("png") || extension.toLowerCase().equals("jpg")) {
+                if (extension.toLowerCase().equals("png") || extension.toLowerCase().equals("jpg") || extension.toLowerCase().equals("jpeg") ) {
 
                     //System.out.println("nombreArchivo " + extension);
                     String archivo = destino + "" + this.txtCedula.getText() + "-" + helper.Helper.obtenerFechaCompleta() + "." + extension.toLowerCase();

@@ -28,7 +28,7 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() {
         initComponents();
-        this.setTitle("Sistema de Enrolamiento");
+        this.setTitle("Sistema de Enrolamiento V.1.0");
         this.setResizable(false);
         //this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(this);

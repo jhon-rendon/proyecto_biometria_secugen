@@ -10,9 +10,14 @@ import entidades.Area;
 import entidades.Persona;
 import entidades.Cargo;
 import java.awt.Image;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import jcifs.smb.NtlmPasswordAuthentication;
+import jcifs.smb.SmbFile;
 import negocio.PersonaControl;
 import negocio.VisitaControl;
 
@@ -619,12 +624,37 @@ public class pnlValidarHuellaEmpleado extends javax.swing.JPanel {
                 this.tfArea.setText( area.getNombre());
                 this.tfEstado.setText(item.getEstado());
                 
-                
-                Image mImagen = new ImageIcon( item.getFoto()).getImage();
-                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
-                 
                 this.jLabelFoto.setText(null);
-                this.jLabelFoto.setIcon(mIcono);
+                String tipoSistemaOperativo = helper.Helper.getOperatingSystem();
+                String foto = "";
+                String url = "";
+                if (tipoSistemaOperativo.equals("windows")) {
+                    foto = "\\" + item.getFoto();
+                    foto = foto.replace("\\", "\\\\");
+                    Image mImagen = new ImageIcon(foto).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
+                    this.jLabelFoto.setIcon(mIcono);
+
+                } else if (tipoSistemaOperativo.equals("linux")) {
+                    url = "smb://" + item.getFoto();
+
+                    NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication(null, null, null);
+                    try {
+                        SmbFile file = new SmbFile(url, auth);
+
+                        InputStream is = new BufferedInputStream(file.getInputStream());
+                        Image mImagen = ImageIO.read(is);
+                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(jLabelFoto.getWidth(), jLabelFoto.getHeight(), Image.SCALE_SMOOTH));
+                        this.jLabelFoto.setIcon(mIcono);
+
+               
+                    } catch (Exception e) {
+                        final String msgErro = String.format("Error reading file '%s': %s", foto, e.getMessage());
+
+                        System.out.println("Error al leer la imagen " + msgErro);
+                    }
+                }
+              
 
                 System.out.println(" Huella ok "+nombre);
                 existeHuella = true;

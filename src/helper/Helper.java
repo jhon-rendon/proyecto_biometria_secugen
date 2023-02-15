@@ -111,4 +111,28 @@ public class Helper {
         String timestamp = ZonedDateTime.now(ZoneId.of("America/Panama")).format(DateTimeFormatter.ofPattern("dd-MM-yyy hh-mm-ss"));
         return timestamp;
     }
+    
+    public static String getOperatingSystem()
+    {
+        // detectando el sistema operativo usando la propiedad del sistema `os.name`
+        String os = System.getProperty("os.name").toLowerCase();
+ 
+        if (os.contains("win")) {
+            return "windows";
+        }
+ 
+        else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+            return "linux";
+        }
+ 
+        else if (os.contains("mac")) {
+            return "mac";
+        }
+ 
+        else if (os.contains("sunos")) {
+            return "solaris";
+        }
+ 
+        return null;
+    }
 }
