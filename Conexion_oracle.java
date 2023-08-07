@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class Conexion {
     
-    private static final String HOST   = "MTcyLjE2LjMwLjk=";
-    private static final String PUERTO = "1521";
-    private static String USER         = "QVBQQklPTUVUUklB";
-    private static String PASSWORD     = "U1MxMjM0NQ==";
-    private static String SID          = "GAMBLE";
+    private static final String HOST   = "";
+    private static final String PUERTO = "";
+    private static String USER         = "";
+    private static String PASSWORD     = "";
+    private static String SID          = "";
     private static String URL          = "jdbc:oracle:thin:@"+helper.Helper.decoder(HOST)+":"+PUERTO+":"+SID;
     private static Connection conexion = null;
     
