@@ -8,11 +8,11 @@ import javax.swing.JOptionPane;
 
 public class ConexionMYSQL {
     
-    private static final String HOST   = "192.168.41.6";
+    private static final String HOST   = "localhost";
     private static final String PUERTO = "3306";
     private static final String DB     = "bd_control_asistencia";
     private static String USER         = "biometria";
-    private static String PASSWORD     = "12345";
+    private static String PASSWORD     = "";
     private static String URL          = "";
     private static Connection conexion = null;
     
